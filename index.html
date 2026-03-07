@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alaa Shahin — Experience Design Specialist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ══════════════════════════════════════
+       LIGHT MODE TOKENS
+    ══════════════════════════════════════ */
+    :root,
+    [data-theme="light"] {
+      --forest:        #1B4332;
+      --forest-mid:    #2D6A4F;
+      --forest-light:  #52B788;
+      --amber:         #F4A261;
+      --amber-deep:    #E07B39;
+
+      --bg-base:       #FEFCF7;
+      --bg-alt:        #F3F7F4;
+      --bg-card:       #FFFFFF;
+      --bg-dark:       #0E1F17;
+      --bg-darker:     #090F0B;
+
+      --ink:           #111C18;
+      --charcoal:      #263029;
+      --slate:         #4A5E54;
+      --muted:         #839488;
+      --border:        #DDE8E2;
+
+      --nav-bg:        rgba(254,252,247,0.94);
+      --nav-shadow:    rgba(27,67,50,0.07);
+
+      --hero-grid:     #DDE8E2;
+      --hero-glow-1:   rgba(82,183,136,0.09);
+      --hero-glow-2:   rgba(244,162,97,0.07);
+
+      --hc2-bg:        #FFFFFF;
+      --hc2-label:     #839488;
+      --hc2-value:     #2D6A4F;
+      --hc2-sub:       #839488;
+      --hc2-border:    #DDE8E2;
+
+      --section-quote: rgba(27,67,50,0.04);
+      --contact-glow:  rgba(27,67,50,0.05);
+
+      --font-body:     'Outfit', sans-serif;
+      --font-display:  'Fraunces', serif;
+
+      --transition-theme: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    }
+
+    /* ══════════════════════════════════════
+       DARK MODE TOKENS
+    ══════════════════════════════════════ */
+    [data-theme="dark"] {
+      --forest:        #2D6A4F;
+      --forest-mid:    #52B788;
+      --forest-light:  #74C99E;
+      --amber:         #F4A261;
+      --amber-deep:    #F0BC8C;
+
+      --bg-base:       #0B1710;
+      --bg-alt:        #0E1F17;
+      --bg-card:       #132218;
+      --bg-dark:       #070E09;
+      --bg-darker:     #040A06;
+
+      --ink:           #E2EDE7;
+      --charcoal:      #B4CAC0;
+      --slate:         #8BAAA0;
+      --muted:         #567267;
+      --border:        #1E3829;
+
+      --nav-bg:        rgba(11,23,16,0.96);
+      --nav-shadow:    rgba(0,0,0,0.35);
+
+      --hero-grid:     #1A3026;
+      --hero-glow-1:   rgba(82,183,136,0.12);
+      --hero-glow-2:   rgba(244,162,97,0.06);
+
+      --hc2-bg:        #1A3026;
+      --hc2-label:     #567267;
+      --hc2-value:     #74C99E;
+      --hc2-sub:       #567267;
+      --hc2-border:    #1E3829;
+
+      --section-quote: rgba(82,183,136,0.03);
+      --contact-glow:  rgba(82,183,136,0.05);
+    }
+    [dir="rtl"] {
+      --font-body:    'Cairo', sans-serif;
+      --font-display: 'Cairo', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--ink);
+      overflow-x: hidden;
+      transition: var(--transition-theme), opacity 0.25s ease;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    .cursor-dot {
+      width: 8px; height: 8px; background: var(--amber);
+      border-radius: 50%; position: fixed; z-index: 9999;
+      pointer-events: none; transform: translate(-50%,-50%);
+      transition: transform 0.1s;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--forest-mid); border-radius: 50%;
+      position: fixed; z-index: 9998; pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: all 0.18s cubic-bezier(0.16,1,0.3,1); opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5vw;
+      background: var(--nav-bg);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s, box-shadow 0.3s, var(--transition-theme);
+    }
+    nav.scrolled { padding: 0.7rem 5vw; box-shadow: 0 4px 24px var(--nav-shadow); }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 500;
+      letter-spacing: 0.01em; color: var(--ink);
+      text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.4s;
+    }
+    .nav-logo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); display: inline-block; }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.03em;
+      color: var(--slate); text-decoration: none;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--forest-mid);
+      transform: scaleX(0); transform-origin: right; transition: transform 0.3s;
+    }
+    .nav-links a:hover { color: var(--forest-mid); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    /* ── ICON BUTTONS (theme + lang) ── */
+    .icon-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.45rem;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--slate); cursor: pointer;
+      font-family: var(--font-body); font-size: 0.78rem; font-weight: 600;
+      padding: 0.48rem 0.75rem; letter-spacing: 0.03em;
+      transition: background 0.22s, border-color 0.22s, color 0.22s, var(--transition-theme);
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .icon-btn:hover { background: var(--forest); border-color: var(--forest); color: #fff; }
+    .icon-btn svg { flex-shrink: 0; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+    .icon-btn:hover svg { transform: rotate(20deg); }
+
+    /* Theme toggle: sun/moon swap */
+    .icon-theme .sun { display: block; }
+    .icon-theme .moon { display: none; }
+    [data-theme="dark"] .icon-theme .sun { display: none; }
+    [data-theme="dark"] .icon-theme .moon { display: block; }
+
+    .nav-cta {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #fff;
+      background: var(--forest); padding: 0.62rem 1.4rem;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    }
+    .nav-cta:hover { background: var(--forest-mid); transform: translateY(-1px); }
+    [dir="rtl"] .nav-cta { clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px); }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5vw 5rem;
+      position: relative; overflow: hidden; gap: 4rem;
+      background: var(--bg-base); transition: background 0.4s;
+    }
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; padding-top: 9rem; }
+      .hero-visual { display: none; }
+    }
+    .hero-bg-shape {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 90% 50%, var(--hero-glow-1) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 5% 90%, var(--hero-glow-2) 0%, transparent 55%);
+      transition: background 0.4s;
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--hero-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--hero-grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 80%);
+      opacity: 0.4; transition: background-image 0.4s;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--forest-mid);
+      margin-bottom: 2rem; padding: 0.45rem 1rem;
+      border: 1px solid rgba(45,106,79,0.3);
+      background: rgba(45,106,79,0.05);
+      transition: color 0.4s;
+    }
+    [data-theme="dark"] .hero-tag { border-color: rgba(82,183,136,0.25); background: rgba(82,183,136,0.05); }
+    [dir="rtl"] .hero-tag { letter-spacing: 0.02em; }
+    .hero-tag-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--amber); flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      font-weight: 400; line-height: 1.08;
+      letter-spacing: -0.02em; color: var(--ink);
+      margin-bottom: 1.75rem; transition: color 0.4s;
+    }
+    [dir="rtl"] h1 { letter-spacing: 0; line-height: 1.25; }
+    h1 em { font-style: italic; color: var(--forest-mid); font-weight: 300; }
+    [dir="rtl"] h1 em { font-style: normal; font-weight: 600; }
+    h1 .underline-word { position: relative; display: inline-block; }
+    h1 .underline-word::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 4px;
+      height: 4px; background: var(--amber);
+      transform: scaleX(0); transform-origin: left;
+      animation: uline 0.8s 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    @keyframes uline { to { transform: scaleX(1); } }
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+      font-weight: 300; color: var(--slate);
+      line-height: 1.75; max-width: 520px; margin-bottom: 3rem;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] .hero-sub { line-height: 1.9; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: var(--forest); color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.83rem; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 1.1rem 2.2rem;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+      transition: background 0.3s, transform 0.25s, gap 0.25s;
+    }
+    [dir="rtl"] .btn-primary { clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px); letter-spacing: 0; }
+    .btn-primary:hover { background: var(--forest-mid); transform: translateY(-2px); gap: 1.2rem; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: transparent; color: var(--forest-mid);
+      font-family: var(--font-body);
+      font-size: 0.83rem; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 1.1rem 2.2rem; border: 1.5px solid var(--forest-mid);
+      transition: background 0.3s, color 0.3s, transform 0.25s;
+    }
+    [dir="rtl"] .btn-outline { letter-spacing: 0; }
+    .btn-outline:hover { background: var(--forest-mid); color: #fff; transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 2.25rem; border-top: 1px solid var(--border);
+      transition: border-color 0.4s;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem; font-weight: 400; color: var(--ink); line-height: 1;
+      transition: color 0.4s;
+    }
+    .stat-num span { color: var(--amber); }
+    .stat-label {
+      font-size: 0.72rem; color: var(--muted); font-weight: 400;
+      text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.4rem;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] .stat-label { letter-spacing: 0; font-size: 0.76rem; }
+
+    /* ── HERO VISUAL CARDS ── */
+    .hero-visual {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-card-stack { position: relative; width: 360px; height: 440px; }
+    .hc {
+      position: absolute; padding: 2rem 2.25rem; border-radius: 2px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+    .hc-1 { width: 300px; background: var(--forest); top: 0; left: 0; animation: float1 6s ease-in-out infinite; transition: background 0.4s; }
+    .hc-2 { width: 280px; background: var(--hc2-bg); border: 1px solid var(--hc2-border); bottom: 40px; right: 0; animation: float2 7s ease-in-out infinite; transition: background 0.4s, border-color 0.4s; }
+    .hc-3 { width: 220px; background: var(--amber); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: float3 5s ease-in-out infinite; }
+    @keyframes float1 { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-12px) rotate(-1deg)} }
+    @keyframes float2 { 0%,100%{transform:translateY(0) rotate(2deg)} 50%{transform:translateY(-8px) rotate(1deg)} }
+    @keyframes float3 { 0%,100%{transform:translate(-50%,-50%) rotate(0deg)} 50%{transform:translate(-50%,-56%) rotate(1deg)} }
+    .hc-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .hc-1 .hc-label { color: rgba(255,255,255,0.5); }
+    .hc-2 .hc-label { color: var(--hc2-label); transition: color 0.4s; }
+    .hc-3 .hc-label { color: rgba(17,28,24,0.6); }
+    .hc-value { font-family: var(--font-display); font-size: 2.4rem; font-weight: 400; line-height: 1; }
+    .hc-1 .hc-value { color: #fff; }
+    .hc-2 .hc-value { color: var(--hc2-value); transition: color 0.4s; }
+    .hc-3 .hc-value { color: #111C18; }
+    .hc-sub { font-size: 0.78rem; margin-top: 0.5rem; }
+    .hc-1 .hc-sub { color: rgba(255,255,255,0.6); }
+    .hc-2 .hc-sub { color: var(--hc2-sub); transition: color 0.4s; }
+    .hc-3 .hc-sub { color: #263029; }
+    .hc-bar-row { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.25rem; }
+    .hc-bar-label { font-size: 0.68rem; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; }
+    .hc-bar-track { height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden; }
+    .hc-bar-fill { height: 100%; background: var(--amber); border-radius: 2px; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 7rem 5vw; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--forest-mid);
+      margin-bottom: 1.5rem; padding: 0.35rem 0.85rem;
+      border: 1px solid rgba(45,106,79,0.3);
+      background: rgba(45,106,79,0.04);
+      transition: color 0.4s;
+    }
+    [data-theme="dark"] .section-tag { border-color: rgba(82,183,136,0.2); background: rgba(82,183,136,0.04); }
+    [dir="rtl"] .section-tag { letter-spacing: 0; font-size: 0.8rem; }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3.8vw, 3.4rem);
+      font-weight: 400; line-height: 1.1; color: var(--ink); margin-bottom: 1.25rem;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] h2 { line-height: 1.35; }
+    h2 em { font-style: italic; color: var(--forest-mid); font-weight: 300; transition: color 0.4s; }
+    [dir="rtl"] h2 em { font-style: normal; font-weight: 700; }
+    .section-intro { font-size: 1.05rem; color: var(--slate); line-height: 1.75; max-width: 600px; transition: color 0.4s; }
+    [dir="rtl"] .section-intro { line-height: 1.9; }
+
+    /* ── PROBLEM ── */
+    #problem { background: var(--bg-dark); transition: background 0.4s; }
+    #problem .section-tag { color: var(--forest-light); border-color: rgba(82,183,136,0.3); background: rgba(82,183,136,0.05); }
+    #problem h2 { color: #fff; }
+    #problem h2 em { color: var(--forest-light); }
+    #problem .section-intro { color: rgba(255,255,255,0.5); }
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px; margin-top: 4rem; background: rgba(255,255,255,0.06);
+    }
+    [data-theme="dark"] .problem-grid { background: rgba(255,255,255,0.04); }
+    .problem-card {
+      background: var(--bg-dark); padding: 2.75rem 2.5rem;
+      transition: background 0.35s, transform 0.35s, var(--transition-theme);
+      border-top: 2px solid transparent; position: relative; overflow: hidden;
+    }
+    .problem-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(82,183,136,0.05) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.35s;
+    }
+    .problem-card:hover { background: #0D2A1C; transform: translateY(-4px); border-top-color: var(--forest-light); }
+    [data-theme="dark"] .problem-card:hover { background: #112518; }
+    .problem-card:hover::before { opacity: 1; }
+    .problem-num {
+      font-family: var(--font-display); font-size: 4rem; font-weight: 300;
+      color: rgba(255,255,255,0.04); line-height: 1; margin-bottom: -1rem; transition: color 0.35s;
+    }
+    .problem-card:hover .problem-num { color: rgba(82,183,136,0.1); }
+    .problem-icon {
+      width: 3rem; height: 3rem; border: 1px solid rgba(82,183,136,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1.5rem;
+      transition: border-color 0.35s, background 0.35s;
+    }
+    .problem-card:hover .problem-icon { border-color: var(--forest-light); background: rgba(82,183,136,0.08); }
+    .problem-card h3 {
+      font-family: var(--font-display); font-size: 1.35rem; font-weight: 400;
+      color: #fff; margin-bottom: 0.85rem;
+    }
+    .problem-card p { font-size: 0.9rem; color: rgba(255,255,255,0.48); line-height: 1.7; }
+    [dir="rtl"] .problem-card p { line-height: 1.9; }
+    .problem-footer {
+      margin-top: 4.5rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.2vw, 1.9rem);
+      font-style: italic; font-weight: 300;
+      color: rgba(255,255,255,0.7); max-width: 680px;
+    }
+    [dir="rtl"] .problem-footer { font-style: normal; }
+
+    /* ── SOLUTION ── */
+    #solution { background: var(--bg-alt); transition: background 0.4s; }
+    .solution-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start; margin-top: 4.5rem;
+    }
+    @media (max-width: 860px) { .solution-layout { grid-template-columns: 1fr; gap: 3rem; } }
+    .step-list { display: flex; flex-direction: column; }
+    .step {
+      display: flex; gap: 2rem; align-items: flex-start;
+      padding: 2.5rem 0; border-bottom: 1px solid var(--border);
+      cursor: default; transition: padding-inline-start 0.35s, border-color 0.4s;
+    }
+    .step:first-child { padding-top: 0; }
+    .step:hover { padding-inline-start: 0.75rem; }
+    .step-num {
+      font-family: var(--font-display); font-size: 3rem; font-weight: 300;
+      color: var(--border); line-height: 1; min-width: 2.5rem;
+      transition: color 0.3s, var(--transition-theme);
+    }
+    .step:hover .step-num { color: var(--forest-light); }
+    .step-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--forest-mid); margin-bottom: 0.6rem;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] .step-label { letter-spacing: 0; font-size: 0.8rem; }
+    .step h3 {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 0.75rem; transition: color 0.4s;
+    }
+    .step p { font-size: 0.9rem; color: var(--slate); line-height: 1.72; transition: color 0.4s; }
+    [dir="rtl"] .step p { line-height: 1.9; }
+    .solution-visual {
+      position: sticky; top: 8rem;
+      background: var(--forest); padding: 3.5rem; color: #fff;
+      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+      transition: background 0.4s;
+    }
+    [dir="rtl"] .solution-visual { clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px); }
+    .visual-tag {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--forest-light); margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    [dir="rtl"] .visual-tag { letter-spacing: 0; font-size: 0.8rem; }
+    .visual-tag::before { content: ''; width: 1.5rem; height: 1px; background: var(--forest-light); }
+    .pv-step { padding: 1.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .pv-step:last-child { border-bottom: none; }
+    .pv-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+    .pv-circle {
+      width: 2.5rem; height: 2.5rem; background: var(--amber);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #111C18; flex-shrink: 0;
+    }
+    .pv-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; color: #fff; }
+    .pv-desc { font-size: 0.83rem; color: rgba(255,255,255,0.46); line-height: 1.65; padding-inline-start: 3.5rem; }
+    [dir="rtl"] .pv-desc { line-height: 1.9; }
+    .pv-connector { width: 1px; height: 1.5rem; background: rgba(255,255,255,0.12); margin-inline-start: 1.25rem; }
+    .solution-cta { margin-top: 4rem; }
+
+    /* ── RESULTS ── */
+    #results { background: var(--bg-card); transition: background 0.4s; }
+    .results-layout {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 6rem; align-items: center; margin-top: 4.5rem;
+    }
+    @media (max-width: 900px) { .results-layout { grid-template-columns: 1fr; gap: 3rem; } }
+    .results-intro-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+      font-weight: 300; font-style: italic;
+      color: var(--charcoal); line-height: 1.5; transition: color 0.4s;
+    }
+    [dir="rtl"] .results-intro-text { font-style: normal; line-height: 1.7; }
+    .results-intro-text strong { font-style: normal; font-weight: 600; color: var(--forest-mid); }
+    .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); transition: background 0.4s; }
+    .result-card {
+      background: var(--bg-card); padding: 2.25rem 2rem;
+      display: flex; flex-direction: column; gap: 0.7rem;
+      transition: background 0.3s, var(--transition-theme); position: relative; overflow: hidden;
+    }
+    .result-card::after {
+      content: ''; position: absolute; inset-block: 0; inset-inline-start: 0;
+      width: 0; background: var(--forest-mid);
+      transition: width 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .result-card:hover { background: var(--bg-alt); }
+    .result-card:hover::after { width: 3px; }
+    .result-icon { font-size: 1.5rem; }
+    .result-card h4 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--ink); transition: color 0.4s; }
+    .result-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.65; transition: color 0.4s; }
+    [dir="rtl"] .result-card p { line-height: 1.9; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg-alt); position: relative; overflow: hidden; transition: background 0.4s; }
+    #about::before {
+      content: 'AS';
+      position: absolute; right: 2%; top: 50%; transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(10rem, 18vw, 20rem);
+      font-weight: 300; color: var(--section-quote);
+      line-height: 1; z-index: 0; pointer-events: none; transition: color 0.4s;
+    }
+    [dir="rtl"] #about::before { right: auto; left: 2%; }
+    .about-layout {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 6rem; align-items: center; position: relative; z-index: 1;
+    }
+    @media (max-width: 900px) { .about-layout { grid-template-columns: 1fr; gap: 3rem; } }
+    .about-badge-area { display: flex; flex-direction: column; gap: 1.5rem; }
+    .about-portrait-frame {
+      width: 100%; aspect-ratio: 3/4; max-width: 360px;
+      background: var(--border); position: relative; overflow: visible; transition: background 0.4s;
+    }
+    .portrait-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, var(--forest) 0%, var(--forest-mid) 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.5rem;
+      transition: background 0.4s;
+    }
+    .portrait-placeholder .initials {
+      font-family: var(--font-display); font-size: 5rem; font-weight: 300; color: rgba(255,255,255,0.7);
+    }
+    .portrait-placeholder .placeholder-label {
+      font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .portrait-accent {
+      position: absolute; bottom: -1.25rem; right: -1.25rem;
+      width: 7rem; height: 7rem; background: var(--amber); z-index: -1;
+    }
+    [dir="rtl"] .portrait-accent { right: auto; left: -1.25rem; }
+    .portrait-line {
+      position: absolute; top: -1.25rem; left: -1.25rem;
+      width: 7rem; height: 7rem; border: 2px solid var(--forest-light); z-index: -1;
+      transition: border-color 0.4s;
+    }
+    [dir="rtl"] .portrait-line { left: auto; right: -1.25rem; }
+    .about-badges { display: flex; flex-direction: column; gap: 0.65rem; }
+    .badge {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.25rem; background: var(--bg-card);
+      border-inline-start: 3px solid var(--forest-mid);
+      transition: border-color 0.3s, transform 0.3s, background 0.4s;
+    }
+    .badge:hover { border-inline-start-color: var(--amber); transform: translateX(4px); }
+    [dir="rtl"] .badge:hover { transform: translateX(-4px); }
+    .badge-icon { font-size: 1.1rem; }
+    .badge-text { font-size: 0.82rem; color: var(--charcoal); line-height: 1.4; transition: color 0.4s; }
+    .badge-text strong { display: block; font-weight: 600; color: var(--ink); transition: color 0.4s; }
+    .about-copy h2 { margin-bottom: 1.75rem; }
+    .about-copy p { font-size: 1rem; color: var(--slate); line-height: 1.8; margin-bottom: 1.25rem; transition: color 0.4s; }
+    [dir="rtl"] .about-copy p { line-height: 2; }
+    .about-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--bg-darker); transition: background 0.4s; }
+    #testimonials .section-tag { color: var(--forest-light); border-color: rgba(82,183,136,0.3); background: rgba(82,183,136,0.05); }
+    #testimonials h2 { color: #fff; }
+    #testimonials h2 em { color: var(--forest-light); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px; margin-top: 4rem; background: rgba(255,255,255,0.05);
+    }
+    .testimonial {
+      background: var(--bg-darker); padding: 3rem 2.5rem;
+      display: flex; flex-direction: column; gap: 1.5rem;
+      transition: background 0.3s, var(--transition-theme);
+    }
+    .testimonial:hover { background: #0D2A1C; }
+    [data-theme="dark"] .testimonial:hover { background: #0B2016; }
+    .t-stars { color: var(--amber); font-size: 0.85rem; letter-spacing: 0.12em; }
+    .t-quote {
+      font-family: var(--font-display); font-size: 1.15rem; font-weight: 300;
+      font-style: italic; color: rgba(255,255,255,0.78); line-height: 1.7;
+    }
+    [dir="rtl"] .t-quote { font-style: normal; line-height: 1.9; }
+    .t-quote::before { content: '\201C'; color: var(--forest-light); font-size: 1.6rem; }
+    .t-author { display: flex; align-items: center; gap: 1rem; margin-top: auto; }
+    .t-avatar {
+      width: 42px; height: 42px; background: var(--forest-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 400;
+      color: #fff; flex-shrink: 0; transition: background 0.4s;
+    }
+    .t-name { font-size: 0.88rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+    .t-role { font-size: 0.76rem; color: rgba(255,255,255,0.4); }
+
+    /* ── MARQUEE ── */
+    .marquee-track {
+      overflow: hidden; background: var(--forest);
+      padding: 1rem 0; white-space: nowrap; transition: background 0.4s;
+    }
+    .marquee-inner { display: inline-block; animation: marquee 24s linear infinite; }
+    [dir="rtl"] .marquee-inner { animation: marquee-rtl 24s linear infinite; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 1.5rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5); padding: 0 2.5rem;
+    }
+    [dir="rtl"] .marquee-item { letter-spacing: 0; font-size: 0.82rem; }
+    .marquee-sep { color: var(--amber); font-size: 1rem; }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    @keyframes marquee-rtl { 0%{transform:translateX(0)} 100%{transform:translateX(50%)} }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg-base); text-align: center;
+      padding: 9rem 5vw; position: relative; overflow: hidden; transition: background 0.4s;
+    }
+    .contact-bg-shape {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse, var(--contact-glow) 0%, transparent 70%);
+      pointer-events: none; transition: background 0.4s;
+    }
+    #contact .section-tag { justify-content: center; position: relative; z-index: 1; }
+    #contact h2 { color: var(--ink); max-width: 700px; margin-inline: auto; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+    #contact .section-intro { max-width: 560px; margin-inline: auto; color: var(--slate); margin-bottom: 3rem; position: relative; z-index: 1; }
+    .contact-btns { display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: var(--amber); color: #111C18;
+      font-family: var(--font-body); font-size: 0.83rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+      padding: 1.2rem 3rem;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+      transition: background 0.3s, color 0.3s, transform 0.25s, gap 0.25s;
+    }
+    [dir="rtl"] .btn-gold { clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px); letter-spacing: 0; }
+    .btn-gold:hover { background: var(--amber-deep); color: #fff; transform: translateY(-2px); gap: 1.2rem; }
+    .contact-note { margin-top: 3rem; font-size: 0.83rem; color: var(--muted); font-style: italic; letter-spacing: 0.02em; position: relative; z-index: 1; transition: color 0.4s; }
+    [dir="rtl"] .contact-note { font-style: normal; }
+    .contact-note strong { color: var(--charcoal); font-style: normal; transition: color 0.4s; }
+    .avail-indicator {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--forest-mid);
+      margin-bottom: 1.5rem; padding: 0.4rem 1rem;
+      border: 1px solid rgba(45,106,79,0.25); background: rgba(45,106,79,0.04);
+      position: relative; z-index: 1; transition: color 0.4s;
+    }
+    [data-theme="dark"] .avail-indicator { border-color: rgba(82,183,136,0.2); background: rgba(82,183,136,0.05); }
+    [dir="rtl"] .avail-indicator { letter-spacing: 0; font-size: 0.8rem; }
+    .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--forest-light); animation: pulse 2s ease-in-out infinite; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--border); background: var(--bg-base);
+      flex-wrap: wrap; gap: 1rem; transition: background 0.4s, border-color 0.4s;
+    }
+    .footer-logo {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 400;
+      color: var(--ink); text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem; transition: color 0.4s;
+    }
+    footer p { font-size: 0.76rem; color: var(--muted); transition: color 0.4s; }
+    footer a { color: var(--forest-mid); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── THEME TRANSITION OVERLAY ── */
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background: transparent; pointer-events: none; z-index: 9990;
+      transition: background 0.3s;
+    }
+    body.theme-switching::after { background: rgba(0,0,0,0.05); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.22s; }
+    .reveal-delay-3 { transition-delay: 0.34s; }
+    .reveal-delay-4 { transition-delay: 0.46s; }
+    .reveal-delay-5 { transition-delay: 0.58s; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 4vw; }
+      .hero-stats { gap: 1.75rem; flex-wrap: wrap; }
+      .about-portrait-frame { max-width: 260px; }
+      #about::before { display: none; }
+      .results-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#">Alaa Shahin <span class="nav-logo-dot"></span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#problem" data-i18n="nav.problem">The Problem</a></li>
+      <li><a href="#solution" data-i18n="nav.process">Process</a></li>
+      <li><a href="#results" data-i18n="nav.results">Results</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+    </ul>
+
+    <!-- THEME TOGGLE -->
+    <button class="icon-btn icon-theme" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <!-- Sun (shown in light mode) -->
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <!-- Moon (shown in dark mode) -->
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+
+    <!-- LANG TOGGLE -->
+    <button class="icon-btn" id="langToggle" onclick="toggleLang()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      <span data-i18n="lang.toggle">عربي</span>
+    </button>
+
+    <a class="nav-cta" href="mailto:hello@alaashahin.com" data-i18n="nav.cta">Let's Talk</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-tag reveal">
+      <span class="hero-tag-dot"></span>
+      <span data-i18n="hero.tag">Experience Design Specialist</span>
+    </div>
+    <h1 class="reveal reveal-delay-1" data-i18n-html="hero.h1">
+      Stop Losing Clients<br>& Fix <em>Messy Processes</em> —<br>Turn Your Business<br>Into a <span class="underline-word">Growth Engine</span>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2" data-i18n="hero.sub">
+      I help small service-based businesses increase conversions and delight clients by auditing, designing, and building smooth, high-converting workflows and digital experiences.
+    </p>
+    <div class="hero-btns reveal reveal-delay-3">
+      <a class="btn-primary" href="mailto:hello@alaashahin.com" data-i18n-html="hero.btn1">Let's Fix Your Client Journey <span>→</span></a>
+      <a class="btn-outline" href="#solution" data-i18n="hero.btn2">See How It Works</a>
+    </div>
+    <div class="hero-stats reveal reveal-delay-4">
+      <div class="stat-item">
+        <div class="stat-num">3<span>×</span></div>
+        <div class="stat-label" data-i18n="stat.1">Avg. Conversion Lift</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">US <span>+</span> GCC</div>
+        <div class="stat-label" data-i18n="stat.2">Multi-National Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">MIT<span>·</span>UMich</div>
+        <div class="stat-label" data-i18n="stat.3">Certified & Credentialed</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual reveal reveal-delay-2">
+    <div class="hero-card-stack">
+      <div class="hc hc-1">
+        <div class="hc-label" data-i18n="hc1.label">Conversion Rate</div>
+        <div class="hc-value">+186%</div>
+        <div class="hc-sub" data-i18n="hc1.sub">After workflow redesign</div>
+        <div class="hc-bar-row">
+          <div>
+            <div class="hc-bar-label"><span data-i18n="hc.before">Before</span><span>12%</span></div>
+            <div class="hc-bar-track"><div class="hc-bar-fill" style="width:12%"></div></div>
+          </div>
+          <div>
+            <div class="hc-bar-label"><span data-i18n="hc.after">After</span><span>35%</span></div>
+            <div class="hc-bar-track"><div class="hc-bar-fill" style="width:35%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hc hc-2">
+        <div class="hc-label" data-i18n="hc2.label">Client Retention</div>
+        <div class="hc-value">94%</div>
+        <div class="hc-sub" data-i18n="hc2.sub">Post-transformation avg.</div>
+      </div>
+      <div class="hc hc-3">
+        <div class="hc-label" data-i18n="hc3.label">Time Saved</div>
+        <div class="hc-value">12 hrs</div>
+        <div class="hc-sub" data-i18n="hc3.sub">Per week / team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-track">
+  <div class="marquee-inner" id="marqueeInner"></div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="reveal"><span class="section-tag" data-i18n="problem.tag">The Problem</span></div>
+  <h2 class="reveal reveal-delay-1" data-i18n-html="problem.h2">Are You Struggling With<br><em>These Challenges?</em></h2>
+  <p class="section-intro reveal reveal-delay-2" data-i18n="problem.intro">Every week you lose revenue to problems that are fixable — if you know where to look.</p>
+  <div class="problem-grid">
+    <div class="problem-card reveal reveal-delay-1">
+      <div class="problem-num">01</div>
+      <div class="problem-icon">📉</div>
+      <h3 data-i18n="p1.h3">Low Conversion Rates</h3>
+      <p data-i18n="p1.p">Potential clients drop off before paying because your processes are unclear, confusing, or full of friction that erodes trust before they even reach checkout.</p>
+    </div>
+    <div class="problem-card reveal reveal-delay-2">
+      <div class="problem-num">02</div>
+      <div class="problem-icon">🌀</div>
+      <h3 data-i18n="p2.h3">Messy Onboarding & Operations</h3>
+      <p data-i18n="p2.p">Disorganized workflows waste your team's time, create bottlenecks, and leave staff feeling overwhelmed — making it impossible to scale without chaos.</p>
+    </div>
+    <div class="problem-card reveal reveal-delay-3">
+      <div class="problem-num">03</div>
+      <div class="problem-icon">🚪</div>
+      <h3 data-i18n="p3.h3">Clients Dropping Off Mid-Journey</h3>
+      <p data-i18n="p3.p">Missed follow-ups and gaps in communication silently cost you revenue every month. Clients leave not because of your service — but because of the experience around it.</p>
+    </div>
+  </div>
+  <p class="problem-footer reveal" data-i18n="problem.footer">"Small service-based businesses often know they need change but don't know where to start — and that's exactly where I come in."</p>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="reveal"><span class="section-tag" data-i18n="solution.tag">The Process</span></div>
+  <h2 class="reveal reveal-delay-1" data-i18n-html="solution.h2">How I <em>Transform</em><br>Your Business</h2>
+  <div class="solution-layout">
+    <div class="step-list">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-label" data-i18n="s1.label">Audit</div>
+          <h3 data-i18n="s1.h3">Discover the Gaps</h3>
+          <p data-i18n="s1.p">Review your current processes, customer touchpoints, and client journey end-to-end to find exactly where revenue is leaking and where opportunities are being missed.</p>
+        </div>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-label" data-i18n="s2.label">Design</div>
+          <h3 data-i18n="s2.h3">Build the Blueprint</h3>
+          <p data-i18n="s2.p">Create clear, practical workflows and processes that improve efficiency, reduce client drop-off, and make your operations easy to manage — without burning out your team.</p>
+        </div>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-label" data-i18n="s3.label">Build</div>
+          <h3 data-i18n="s3.h3">Implement & Scale</h3>
+          <p data-i18n="s3.p">Implement the solutions — systems, workflows, and digital tools — so your business runs smoothly and every client receives a premium, consistent experience.</p>
+        </div>
+      </div>
+    </div>
+    <div class="solution-visual reveal reveal-delay-2">
+      <div class="visual-tag" data-i18n="visual.tag">Your Transformation</div>
+      <div>
+        <div class="pv-step">
+          <div class="pv-header"><div class="pv-circle">A</div><div class="pv-name" data-i18n="pv1.name">Audit</div></div>
+          <div class="pv-desc" data-i18n="pv1.desc">Map your full client journey · Identify revenue leaks · Benchmark against best practices</div>
+        </div>
+        <div class="pv-connector"></div>
+        <div class="pv-step">
+          <div class="pv-header"><div class="pv-circle">D</div><div class="pv-name" data-i18n="pv2.name">Design</div></div>
+          <div class="pv-desc" data-i18n="pv2.desc">Redesign workflows · Create frictionless touchpoints · Document standard operating procedures</div>
+        </div>
+        <div class="pv-connector"></div>
+        <div class="pv-step">
+          <div class="pv-header"><div class="pv-circle">B</div><div class="pv-name" data-i18n="pv3.name">Build</div></div>
+          <div class="pv-desc" data-i18n="pv3.desc">Implement tools & systems · Train your team · Monitor and iterate for results</div>
+        </div>
+      </div>
+      <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1)">
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.36);line-height:1.7" data-i18n="visual.note">Every engagement is tailored to your specific business. No templates. No one-size-fits-all solutions.</p>
+      </div>
+    </div>
+  </div>
+  <div class="solution-cta reveal">
+    <a class="btn-primary" href="mailto:hello@alaashahin.com" data-i18n-html="solution.cta">See How I Can Transform Your Business <span>→</span></a>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="reveal"><span class="section-tag" data-i18n="results.tag">The Outcome</span></div>
+  <h2 class="reveal reveal-delay-1" data-i18n-html="results.h2">What You Get When<br>We Work <em>Together</em></h2>
+  <div class="results-layout">
+    <div class="results-intro-text reveal reveal-delay-1" data-i18n-html="results.intro">You don't just get a consultant. You get a <strong>complete transformation</strong> — from messy and stagnant to smooth, scalable, and <strong>profitable.</strong></div>
+    <div class="results-grid reveal reveal-delay-2">
+      <div class="result-card"><div class="result-icon">📈</div><h4 data-i18n="r1.h4">Higher Conversions</h4><p data-i18n="r1.p">Turn more leads into paying clients by removing friction and clarifying every step of the buyer journey.</p></div>
+      <div class="result-card"><div class="result-icon">⚙️</div><h4 data-i18n="r2.h4">Smooth Operations</h4><p data-i18n="r2.p">Reduce staff stress and wasted time with workflows that actually make sense for your team and your clients.</p></div>
+      <div class="result-card"><div class="result-icon">✨</div><h4 data-i18n="r3.h4">Delighted Clients</h4><p data-i18n="r3.p">Give every client a premium, stress-free experience that earns referrals and builds long-term loyalty.</p></div>
+      <div class="result-card"><div class="result-icon">💰</div><h4 data-i18n="r4.h4">Revenue Growth</h4><p data-i18n="r4.p">Fixing drop-offs and inefficient processes directly increases your income — often within weeks.</p></div>
+      <div class="result-card"><div class="result-icon">🛠</div><h4 data-i18n="r5.h4">Practical Systems</h4><p data-i18n="r5.p">Walk away with usable processes and tools your team can actually operate — not theoretical frameworks.</p></div>
+      <div class="result-card"><div class="result-icon">🚀</div><h4 data-i18n="r6.h4">Scalable Foundation</h4><p data-i18n="r6.p">Build a business that can grow without breaking — where quality stays consistent as volume increases.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div class="about-badge-area reveal">
+      <div class="about-portrait-frame">
+        <div class="portrait-placeholder">
+          <div class="initials">AS</div>
+          <div class="placeholder-label" data-i18n="portrait.label">Your Photo Here</div>
+        </div>
+        <div class="portrait-accent"></div>
+        <div class="portrait-line"></div>
+      </div>
+      <div class="about-badges">
+        <div class="badge"><div class="badge-icon">🎓</div><div class="badge-text"><strong data-i18n="b1.strong">University of Michigan</strong><span data-i18n="b1.text">Bachelor's & Master's in UX Research & Design</span></div></div>
+        <div class="badge"><div class="badge-icon">🏛</div><div class="badge-text"><strong data-i18n="b2.strong">MIT Certified</strong><span data-i18n="b2.text">Design Thinking Certification</span></div></div>
+        <div class="badge"><div class="badge-icon">🌍</div><div class="badge-text"><strong data-i18n="b3.strong">Multi-National Experience</strong><span data-i18n="b3.text">United States & GCC Markets</span></div></div>
+      </div>
+    </div>
+    <div class="about-copy reveal reveal-delay-1">
+      <span class="section-tag" data-i18n="about.tag">About</span>
+      <h2 data-i18n-html="about.h2">Meet <em>Alaa Shahin</em> —<br>Your Experience Design Specialist</h2>
+      <p data-i18n="about.p1">Hi, I'm Alaa Shahin. I help small service-based businesses turn messy processes into smooth, high-converting systems that delight clients and grow revenue.</p>
+      <p data-i18n="about.p2">With a Bachelor's and Master's in UX Research & Design from the University of Michigan, an MIT Design Thinking certification, and multi-national experience across the US and GCC, I bring a rare blend of academic rigor and real-world business strategy.</p>
+      <p data-i18n="about.p3">I specialize in helping business owners streamline workflows, improve customer experiences, and implement practical solutions that drive measurable growth — not just pretty decks that sit on a shelf.</p>
+      <div class="about-cta-row">
+        <a class="btn-primary" href="mailto:hello@alaashahin.com" data-i18n-html="about.cta">Let's Talk About Your Business <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="reveal"><span class="section-tag" data-i18n="t.tag">Social Proof</span></div>
+  <h2 class="reveal reveal-delay-1" data-i18n-html="t.h2">What Business Owners<br>Are <em>Saying</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial reveal reveal-delay-1">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote" data-i18n="t1.quote">Working with Alaa completely transformed our client onboarding process. Our conversion rate went from 12% to 35% in just a few weeks!</p>
+      <div class="t-author"><div class="t-avatar">SC</div><div><div class="t-name" data-i18n="t1.name">Small Clinic Owner</div><div class="t-role" data-i18n="t1.role">Healthcare Services</div></div></div>
+    </div>
+    <div class="testimonial reveal reveal-delay-2">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote" data-i18n="t2.quote">Alaa helped us streamline workflows and fix the messy gaps in our processes. Our team feels organized and confident for the first time in years.</p>
+      <div class="t-author"><div class="t-avatar">LS</div><div><div class="t-name" data-i18n="t2.name">Luxury Salon Owner</div><div class="t-role" data-i18n="t2.role">Beauty & Wellness</div></div></div>
+    </div>
+    <div class="testimonial reveal reveal-delay-3">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote" data-i18n="t3.quote">The systems and solutions Alaa built for us made our business feel like a premium experience for our clients. We can finally scale without losing quality.</p>
+      <div class="t-author"><div class="t-avatar">CB</div><div><div class="t-name" data-i18n="t3.name">Coaching Business Owner</div><div class="t-role" data-i18n="t3.role">Professional Coaching</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg-shape"></div>
+  <div class="avail-indicator reveal"><span class="avail-dot"></span><span data-i18n="contact.avail">Currently Accepting New Clients</span></div>
+  <span class="section-tag reveal reveal-delay-1" data-i18n="contact.tag">Ready to Grow?</span>
+  <h2 class="reveal reveal-delay-2" data-i18n-html="contact.h2">Ready to <em>Transform</em><br>Your Business?</h2>
+  <p class="section-intro reveal reveal-delay-3" data-i18n="contact.intro">Stop losing clients to messy processes, low conversions, or confusing systems. Let's work together to audit, design, and build a smooth, high-converting business experience.</p>
+  <div class="contact-btns reveal reveal-delay-4">
+    <a class="btn-gold" href="mailto:hello@alaashahin.com" data-i18n-html="contact.btn1">Book Your Discovery Call <span>→</span></a>
+    <a class="btn-outline" href="mailto:hello@alaashahin.com" data-i18n="contact.btn2">Send a Message</a>
+  </div>
+  <p class="contact-note reveal reveal-delay-5" data-i18n-html="contact.note"><strong>Limited availability.</strong> I work with a select number of businesses at a time to ensure maximum impact.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="#">Alaa <span style="color:var(--forest-mid)">Shahin</span> <span class="nav-logo-dot"></span></a>
+  <p data-i18n-html="footer.line">Experience Design Specialist · <a href="mailto:hello@alaashahin.com">hello@alaashahin.com</a></p>
+  <p data-i18n="footer.copy">© 2025 Alaa Shahin. All rights reserved.</p>
+</footer>
+
+<script>
+/* ════════════════════════════════════════
+   TRANSLATIONS
+════════════════════════════════════════ */
+const T = {
+  en: {
+    'nav.problem':'The Problem','nav.process':'Process','nav.results':'Results','nav.about':'About','nav.cta':"Let's Talk",
+    'hero.tag':'Experience Design Specialist',
+    'hero.h1':'Stop Losing Clients<br>& Fix <em>Messy Processes</em> —<br>Turn Your Business<br>Into a <span class="underline-word">Growth Engine</span>',
+    'hero.sub':'I help small service-based businesses increase conversions and delight clients by auditing, designing, and building smooth, high-converting workflows and digital experiences.',
+    'hero.btn1':'Let\'s Fix Your Client Journey <span>→</span>','hero.btn2':'See How It Works',
+    'stat.1':'Avg. Conversion Lift','stat.2':'Multi-National Experience','stat.3':'Certified & Credentialed',
+    'hc1.label':'Conversion Rate','hc1.sub':'After workflow redesign','hc.before':'Before','hc.after':'After',
+    'hc2.label':'Client Retention','hc2.sub':'Post-transformation avg.',
+    'hc3.label':'Time Saved','hc3.sub':'Per week / team',
+    'marquee':['Client Journey Audits','Workflow Redesign','Conversion Optimization','Process Architecture','Experience Design','Revenue Growth Systems'],
+    'problem.tag':'The Problem','problem.h2':'Are You Struggling With<br><em>These Challenges?</em>',
+    'problem.intro':'Every week you lose revenue to problems that are fixable — if you know where to look.',
+    'p1.h3':'Low Conversion Rates','p1.p':'Potential clients drop off before paying because your processes are unclear, confusing, or full of friction that erodes trust before they even reach checkout.',
+    'p2.h3':'Messy Onboarding & Operations','p2.p':"Disorganized workflows waste your team's time, create bottlenecks, and leave staff feeling overwhelmed — making it impossible to scale without chaos.",
+    'p3.h3':'Clients Dropping Off Mid-Journey','p3.p':"Missed follow-ups and gaps in communication silently cost you revenue every month. Clients leave not because of your service — but because of the experience around it.",
+    'problem.footer':'"Small service-based businesses often know they need change but don\'t know where to start — and that\'s exactly where I come in."',
+    'solution.tag':'The Process','solution.h2':'How I <em>Transform</em><br>Your Business',
+    's1.label':'Audit','s1.h3':'Discover the Gaps','s1.p':'Review your current processes, customer touchpoints, and client journey end-to-end to find exactly where revenue is leaking and where opportunities are being missed.',
+    's2.label':'Design','s2.h3':'Build the Blueprint','s2.p':"Create clear, practical workflows and processes that improve efficiency, reduce client drop-off, and make your operations easy to manage — without burning out your team.",
+    's3.label':'Build','s3.h3':'Implement & Scale','s3.p':"Implement the solutions — systems, workflows, and digital tools — so your business runs smoothly and every client receives a premium, consistent experience.",
+    'visual.tag':'Your Transformation',
+    'pv1.name':'Audit','pv1.desc':'Map your full client journey · Identify revenue leaks · Benchmark against best practices',
+    'pv2.name':'Design','pv2.desc':'Redesign workflows · Create frictionless touchpoints · Document standard operating procedures',
+    'pv3.name':'Build','pv3.desc':'Implement tools & systems · Train your team · Monitor and iterate for results',
+    'visual.note':'Every engagement is tailored to your specific business. No templates. No one-size-fits-all solutions.',
+    'solution.cta':'See How I Can Transform Your Business <span>→</span>',
+    'results.tag':'The Outcome','results.h2':'What You Get When<br>We Work <em>Together</em>',
+    'results.intro':'You don\'t just get a consultant. You get a <strong>complete transformation</strong> — from messy and stagnant to smooth, scalable, and <strong>profitable.</strong>',
+    'r1.h4':'Higher Conversions','r1.p':'Turn more leads into paying clients by removing friction and clarifying every step of the buyer journey.',
+    'r2.h4':'Smooth Operations','r2.p':"Reduce staff stress and wasted time with workflows that actually make sense for your team and your clients.",
+    'r3.h4':'Delighted Clients','r3.p':'Give every client a premium, stress-free experience that earns referrals and builds long-term loyalty.',
+    'r4.h4':'Revenue Growth','r4.p':'Fixing drop-offs and inefficient processes directly increases your income — often within weeks.',
+    'r5.h4':'Practical Systems','r5.p':'Walk away with usable processes and tools your team can actually operate — not theoretical frameworks.',
+    'r6.h4':'Scalable Foundation','r6.p':'Build a business that can grow without breaking — where quality stays consistent as volume increases.',
+    'portrait.label':'Your Photo Here','about.tag':'About',
+    'about.h2':'Meet <em>Alaa Shahin</em> —<br>Your Experience Design Specialist',
+    'about.p1':"Hi, I'm Alaa Shahin. I help small service-based businesses turn messy processes into smooth, high-converting systems that delight clients and grow revenue.",
+    'about.p2':"With a Bachelor's and Master's in UX Research & Design from the University of Michigan, an MIT Design Thinking certification, and multi-national experience across the US and GCC, I bring a rare blend of academic rigor and real-world business strategy.",
+    'about.p3':"I specialize in helping business owners streamline workflows, improve customer experiences, and implement practical solutions that drive measurable growth — not just pretty decks that sit on a shelf.",
+    'about.cta':"Let's Talk About Your Business <span>→</span>",
+    'b1.strong':'University of Michigan','b1.text':"Bachelor's & Master's in UX Research & Design",
+    'b2.strong':'MIT Certified','b2.text':'Design Thinking Certification',
+    'b3.strong':'Multi-National Experience','b3.text':'United States & GCC Markets',
+    't.tag':'Social Proof','t.h2':'What Business Owners<br>Are <em>Saying</em>',
+    't1.quote':'Working with Alaa completely transformed our client onboarding process. Our conversion rate went from 12% to 35% in just a few weeks!',
+    't1.name':'Small Clinic Owner','t1.role':'Healthcare Services',
+    't2.quote':'Alaa helped us streamline workflows and fix the messy gaps in our processes. Our team feels organized and confident for the first time in years.',
+    't2.name':'Luxury Salon Owner','t2.role':'Beauty & Wellness',
+    't3.quote':'The systems and solutions Alaa built for us made our business feel like a premium experience for our clients. We can finally scale without losing quality.',
+    't3.name':'Coaching Business Owner','t3.role':'Professional Coaching',
+    'contact.avail':'Currently Accepting New Clients','contact.tag':'Ready to Grow?',
+    'contact.h2':'Ready to <em>Transform</em><br>Your Business?',
+    'contact.intro':"Stop losing clients to messy processes, low conversions, or confusing systems. Let's work together to audit, design, and build a smooth, high-converting business experience.",
+    'contact.btn1':'Book Your Discovery Call <span>→</span>','contact.btn2':'Send a Message',
+    'contact.note':'<strong>Limited availability.</strong> I work with a select number of businesses at a time to ensure maximum impact.',
+    'footer.line':'Experience Design Specialist · <a href="mailto:hello@alaashahin.com">hello@alaashahin.com</a>',
+    'footer.copy':'© 2025 Alaa Shahin. All rights reserved.','lang.toggle':'عربي'
+  },
+  ar: {
+    'nav.problem':'المشكلة','nav.process':'المنهجية','nav.results':'النتائج','nav.about':'عني','nav.cta':'تواصل معي',
+    'hero.tag':'أخصائي تصميم التجربة',
+    'hero.h1':'توقف عن خسارة العملاء<br>وأصلح <em>الفوضى التشغيلية</em> —<br>حوّل عملك<br>إلى <span class="underline-word">محرك نمو</span>',
+    'hero.sub':'أساعد الشركات الصغيرة في قطاع الخدمات على زيادة معدلات التحويل وإسعاد العملاء من خلال تدقيق وتصميم وبناء تدفقات عمل سلسة وعالية الأداء.',
+    'hero.btn1':'لنُصلح رحلة عميلك <span>←</span>','hero.btn2':'اكتشف كيف يعمل',
+    'stat.1':'متوسط رفع معدل التحويل','stat.2':'خبرة دولية متعددة','stat.3':'معتمد ومؤهل',
+    'hc1.label':'معدل التحويل','hc1.sub':'بعد إعادة تصميم سير العمل','hc.before':'قبل','hc.after':'بعد',
+    'hc2.label':'الاحتفاظ بالعملاء','hc2.sub':'متوسط ما بعد التحول',
+    'hc3.label':'الوقت الموفر','hc3.sub':'أسبوعياً للفريق',
+    'marquee':['تدقيق رحلة العميل','إعادة تصميم سير العمل','تحسين معدل التحويل','هندسة العمليات','تصميم التجربة','أنظمة نمو الإيرادات'],
+    'problem.tag':'المشكلة','problem.h2':'هل تعاني من<br><em>هذه التحديات؟</em>',
+    'problem.intro':'كل أسبوع تخسر إيرادات بسبب مشاكل قابلة للحل — إذا عرفت أين تبحث.',
+    'p1.h3':'معدلات تحويل منخفضة','p1.p':'ينسحب العملاء المحتملون قبل الدفع لأن عملياتك غير واضحة أو مليئة بالاحتكاكات التي تآكل الثقة قبل أن يصلوا إلى مرحلة الدفع.',
+    'p2.h3':'إعداد وتشغيل فوضوي','p2.p':'تهدر سير العمل غير المنظمة وقت فريقك وتخلق اختناقات تجعل التوسع مستحيلاً دون الوقوع في الفوضى.',
+    'p3.h3':'انسحاب العملاء في منتصف الرحلة','p3.p':'المتابعات الفائتة والثغرات في التواصل تكلفك إيرادات شهرياً. العملاء لا يغادرون بسبب خدمتك — بل بسبب التجربة المحيطة بها.',
+    'problem.footer':'"كثيراً ما تعرف الشركات الصغيرة في قطاع الخدمات أنها تحتاج إلى تغيير، لكنها لا تعرف من أين تبدأ — وهنا بالضبط أتدخل."',
+    'solution.tag':'المنهجية','solution.h2':'كيف <em>أُحوّل</em><br>عملك',
+    's1.label':'التدقيق','s1.h3':'اكتشف الثغرات','s1.p':'مراجعة عملياتك الحالية ونقاط التواصل مع العملاء ورحلتهم من البداية إلى النهاية لتحديد أين تتسرب الإيرادات والفرص الضائعة.',
+    's2.label':'التصميم','s2.h3':'بناء المخطط','s2.p':'إنشاء مسارات عمل واضحة وعملية تحسن الكفاءة وتقلل من انسحاب العملاء وتجعل عملياتك سهلة الإدارة دون إرهاق فريقك.',
+    's3.label':'البناء','s3.h3':'التنفيذ والتوسع','s3.p':'تنفيذ الحلول — الأنظمة وتدفقات العمل والأدوات الرقمية — حتى يعمل عملك بسلاسة ويحصل كل عميل على تجربة متميزة ومتسقة.',
+    'visual.tag':'تحولك',
+    'pv1.name':'التدقيق','pv1.desc':'رسم خريطة رحلة العميل · تحديد مواطن تسرب الإيرادات · القياس وفق أفضل الممارسات',
+    'pv2.name':'التصميم','pv2.desc':'إعادة تصميم سير العمل · إنشاء نقاط تواصل سلسة · توثيق إجراءات التشغيل الموحدة',
+    'pv3.name':'البناء','pv3.desc':'تنفيذ الأدوات والأنظمة · تدريب فريقك · المتابعة والتحسين المستمر',
+    'visual.note':'كل مشاركة مصممة خصيصاً لعملك. لا قوالب جاهزة. لا حلول موحدة.',
+    'solution.cta':'اكتشف كيف يمكنني تحويل عملك <span>←</span>',
+    'results.tag':'النتيجة','results.h2':'ما ستحصل عليه<br>حين نعمل <em>معاً</em>',
+    'results.intro':'لا تحصل فقط على مستشار. تحصل على <strong>تحول كامل</strong> — من الفوضى والركود إلى السلاسة والقابلية للتوسع <strong>والربحية.</strong>',
+    'r1.h4':'معدل تحويل أعلى','r1.p':'حوّل المزيد من العملاء المحتملين إلى عملاء فعليين من خلال إزالة الاحتكاكات وتوضيح كل خطوة في رحلة الشراء.',
+    'r2.h4':'عمليات سلسة','r2.p':'قلل ضغط فريقك وهدر الوقت بسير عمل منطقية تخدم فريقك وعملاءك معاً.',
+    'r3.h4':'عملاء سعداء','r3.p':'امنح كل عميل تجربة متميزة وخالية من التوتر تكسبك الإحالات وتبني الولاء على المدى البعيد.',
+    'r4.h4':'نمو الإيرادات','r4.p':'معالجة نقاط التسرب والعمليات غير الفعّالة تزيد دخلك مباشرة — وغالباً في غضون أسابيع.',
+    'r5.h4':'أنظمة عملية','r5.p':'انتهِ بعمليات وأدوات يستطيع فريقك تشغيلها فعلاً — لا أطر نظرية تجلس على الرف.',
+    'r6.h4':'أساس قابل للتوسع','r6.p':'ابنِ عملاً يمكنه النمو دون أن ينهار — حيث تبقى الجودة ثابتة مع زيادة الحجم.',
+    'portrait.label':'صورتك هنا','about.tag':'عن علاء',
+    'about.h2':'تعرف على <em>علاء شاهين</em> —<br>أخصائي تصميم التجربة',
+    'about.p1':'مرحباً، أنا علاء شاهين. أساعد الشركات الصغيرة في قطاع الخدمات على تحويل العمليات الفوضوية إلى أنظمة سلسة وعالية التحويل تُسعد العملاء وتنمّي الإيرادات.',
+    'about.p2':'بفضل درجتَي البكالوريوس والماجستير في أبحاث وتصميم تجربة المستخدم من جامعة ميشيغان، وشهادة التفكير التصميمي من MIT، وخبرتي الدولية في الأسواق الأمريكية وأسواق دول الخليج، أجمع بين الصرامة الأكاديمية والاستراتيجية التجارية الواقعية.',
+    'about.p3':'أتخصص في مساعدة أصحاب الأعمال على تبسيط سير العمل وتحسين تجارب العملاء وتنفيذ حلول عملية تحقق نمواً قابلاً للقياس — لا مجرد عروض تقديمية جميلة تبقى على الرف.',
+    'about.cta':'لنتحدث عن عملك <span>←</span>',
+    'b1.strong':'جامعة ميشيغان','b1.text':'بكالوريوس وماجستير في أبحاث وتصميم تجربة المستخدم',
+    'b2.strong':'معتمد من MIT','b2.text':'شهادة التفكير التصميمي',
+    'b3.strong':'خبرة دولية متعددة','b3.text':'الأسواق الأمريكية وأسواق دول الخليج',
+    't.tag':'شهادات العملاء','t.h2':'ماذا يقول<br><em>أصحاب الأعمال</em>',
+    't1.quote':'العمل مع علاء غيّر عملية استقبال العملاء لدينا تماماً. ارتفع معدل التحويل من 12% إلى 35% في غضون أسابيع قليلة فقط!',
+    't1.name':'صاحبة عيادة صغيرة','t1.role':'الخدمات الطبية',
+    't2.quote':'ساعدنا علاء على تبسيط سير العمل وسد الثغرات في عملياتنا. يشعر فريقنا بالتنظيم والثقة للمرة الأولى منذ سنوات.',
+    't2.name':'صاحبة صالون فاخر','t2.role':'الجمال والعناية',
+    't3.quote':'الأنظمة والحلول التي بناها علاء جعلت أعمالنا تبدو كتجربة متميزة لعملائنا. يمكننا أخيراً التوسع دون المساس بالجودة.',
+    't3.name':'صاحب شركة تدريب','t3.role':'التدريب المهني',
+    'contact.avail':'نقبل عملاء جدداً الآن','contact.tag':'مستعد للنمو؟',
+    'contact.h2':'هل أنت مستعد<br><em>لتحويل</em> عملك؟',
+    'contact.intro':'توقف عن خسارة العملاء بسبب العمليات الفوضوية ومعدلات التحويل المنخفضة. دعنا نعمل معاً على تدقيق وتصميم وبناء تجربة أعمال سلسة وعالية التحويل.',
+    'contact.btn1':'احجز مكالمة الاستكشاف <span>←</span>','contact.btn2':'أرسل رسالة',
+    'contact.note':'<strong>أماكن محدودة.</strong> أعمل مع عدد محدود من الشركات في آنٍ واحد لضمان أقصى تأثير.',
+    'footer.line':'أخصائي تصميم التجربة · <a href="mailto:hello@alaashahin.com">hello@alaashahin.com</a>',
+    'footer.copy':'© 2025 علاء شاهين. جميع الحقوق محفوظة.','lang.toggle':'English'
+  }
+};
+
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
+let lang = 'en';
+let theme = localStorage.getItem('theme') || 'light';
+
+/* ════════════════════════════════════════
+   THEME
+════════════════════════════════════════ */
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('theme', t);
+}
+function toggleTheme() {
+  document.body.classList.add('theme-switching');
+  theme = theme === 'light' ? 'dark' : 'light';
+  applyTheme(theme);
+  setTimeout(() => document.body.classList.remove('theme-switching'), 350);
+}
+applyTheme(theme); // apply on load
+
+/* ════════════════════════════════════════
+   TRANSLATIONS
+════════════════════════════════════════ */
+function buildMarquee(l) {
+  const items = T[l].marquee;
+  let html = '';
+  for (let r = 0; r < 2; r++) {
+    items.forEach(item => {
+      html += `<span class="marquee-item">${item} <span class="marquee-sep">◆</span></span>`;
+    });
+  }
+  document.getElementById('marqueeInner').innerHTML = html;
+}
+function applyTranslations(l) {
+  const t = T[l];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.getAttribute('data-i18n-html');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  buildMarquee(l);
+}
+function toggleLang() {
+  document.body.style.opacity = '0';
+  setTimeout(() => {
+    lang = lang === 'en' ? 'ar' : 'en';
+    applyTranslations(lang);
+    const html = document.documentElement;
+    html.lang = lang;
+    html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.body.style.opacity = '1';
+    document.querySelectorAll('.reveal').forEach(el => el.classList.remove('visible'));
+    setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 40) el.classList.add('visible');
+      });
+    }, 80);
+  }, 250);
+}
+applyTranslations(lang); // init
+
+/* ════════════════════════════════════════
+   CURSOR
+════════════════════════════════════════ */
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+  ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.opacity = '0.9'; });
+  el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '0.6'; });
+});
+
+/* ════════════════════════════════════════
+   NAV SCROLL
+════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(r => revealObs.observe(r));
+
+/* ════════════════════════════════════════
+   BAR ANIMATIONS
+════════════════════════════════════════ */
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.hc-bar-fill').forEach(f => {
+        const w = f.style.width; f.style.width = '0';
+        setTimeout(() => { f.style.transition = 'width 1.2s cubic-bezier(0.16,1,0.3,1)'; f.style.width = w; }, 300);
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.hc-1').forEach(el => barObs.observe(el));
+</script>
+</body>
+</html>
