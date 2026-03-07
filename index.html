@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Alaa Shahin — Experience Design Specialist helping small service-based businesses increase conversions and delight clients through smooth, high-converting workflows and digital experiences." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>◆</text></svg>" />
   <title>Alaa Shahin — Experience Design Specialist</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
@@ -28,7 +30,7 @@
       --ink:           #111C18;
       --charcoal:      #263029;
       --slate:         #4A5E54;
-      --muted:         #839488;
+      --muted:         #5F7268;
       --border:        #DDE8E2;
 
       --nav-bg:        rgba(254,252,247,0.94);
@@ -72,7 +74,7 @@
       --ink:           #E2EDE7;
       --charcoal:      #B4CAC0;
       --slate:         #8BAAA0;
-      --muted:         #567267;
+      --muted:         #7A9B8E;
       --border:        #1E3829;
 
       --nav-bg:        rgba(11,23,16,0.96);
@@ -177,15 +179,48 @@
 
     .nav-cta {
       font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; color: #fff;
-      background: var(--forest); padding: 0.62rem 1.4rem;
+      text-transform: uppercase; background: var(--amber); color: #111C18; padding: 0.62rem 1.4rem;
       border: none; cursor: pointer; text-decoration: none;
-      transition: background 0.25s, transform 0.2s;
+      transition: background 0.3s, color 0.3s, transform 0.25s, gap 0.25s;
       clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
     }
-    .nav-cta:hover { background: var(--forest-mid); transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--forest-mid); transform: translateY(-1px); color: white; }
     [dir="rtl"] .nav-cta { clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px); }
-    @media (max-width: 760px) { .nav-links { display: none; } }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      padding: 0.5rem; z-index: 201; position: relative;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--ink); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s, background 0.4s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 760px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        z-index: -1;
+        flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 2.5rem;
+        padding-top: 3rem;
+        background: var(--bg-base);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.35s ease, background 0.4s;
+      }
+      .nav-links.open { opacity: 1; pointer-events: all; z-index: 199; }
+      .nav-links a { font-size: 1.4rem; color: var(--ink); }
+      .nav-cta { display: none; }
+    }
 
     /* ── HERO ── */
     #hero {
@@ -389,12 +424,19 @@
     }
     .problem-card:hover .problem-num { color: rgba(82,183,136,0.1); }
     .problem-icon {
-      width: 3rem; height: 3rem; border: 1px solid rgba(82,183,136,0.25);
+      width: 2.75rem; height: 2.75rem; border: 1px solid rgba(82,183,136,0.25);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; margin-bottom: 1.5rem;
+      border-radius: 10px; margin-bottom: 1.5rem;
       transition: border-color 0.35s, background 0.35s;
     }
-    .problem-card:hover .problem-icon { border-color: var(--forest-light); background: rgba(82,183,136,0.08); }
+    .problem-icon ion-icon {
+      font-size: 1.25rem; color: var(--forest-light);
+      transition: color 0.35s;
+    }
+    .problem-card:hover .problem-icon {
+      border-color: var(--forest-light); background: rgba(82,183,136,0.12);
+    }
+    .problem-card:hover .problem-icon ion-icon { color: #fff; }
     .problem-card h3 {
       font-family: var(--font-display); font-size: 1.35rem; font-weight: 400;
       color: #fff; margin-bottom: 0.85rem;
@@ -408,105 +450,373 @@
       font-size: clamp(1.2rem, 2.2vw, 1.9rem);
       font-style: italic; font-weight: 300;
       color: rgba(255,255,255,0.7); max-width: 680px;
+      margin-inline: auto; text-align: center;
     }
     [dir="rtl"] .problem-footer { font-style: normal; }
 
-    /* ── SOLUTION ── */
-    #solution { background: var(--bg-alt); transition: background 0.4s; }
-    .solution-layout {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem; align-items: start; margin-top: 4.5rem;
-    }
-    @media (max-width: 860px) { .solution-layout { grid-template-columns: 1fr; gap: 3rem; } }
-    .step-list { display: flex; flex-direction: column; }
-    .step {
-      display: flex; gap: 2rem; align-items: flex-start;
-      padding: 2.5rem 0; border-bottom: 1px solid var(--border);
-      cursor: default; transition: padding-inline-start 0.35s, border-color 0.4s;
-    }
-    .step:first-child { padding-top: 0; }
-    .step:hover { padding-inline-start: 0.75rem; }
-    .step-num {
-      font-family: var(--font-display); font-size: 3rem; font-weight: 300;
-      color: var(--border); line-height: 1; min-width: 2.5rem;
-      transition: color 0.3s, var(--transition-theme);
-    }
-    .step:hover .step-num { color: var(--forest-light); }
-    .step-label {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--forest-mid); margin-bottom: 0.6rem;
-      transition: color 0.4s;
-    }
-    [dir="rtl"] .step-label { letter-spacing: 0; font-size: 0.8rem; }
-    .step h3 {
-      font-family: var(--font-display); font-size: 1.5rem; font-weight: 400;
-      color: var(--ink); margin-bottom: 0.75rem; transition: color 0.4s;
-    }
-    .step p { font-size: 0.9rem; color: var(--slate); line-height: 1.72; transition: color 0.4s; }
-    [dir="rtl"] .step p { line-height: 1.9; }
-    .solution-visual {
-      position: sticky; top: 8rem;
-      background: var(--forest); padding: 3.5rem; color: #fff;
-      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    /* ── SOLUTION (JOURNEY ROAD) ── */
+    #solution {
+      background: var(--bg-alt); padding: 7rem 5vw;
       transition: background 0.4s;
     }
-    [dir="rtl"] .solution-visual { clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px); }
-    .visual-tag {
-      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--forest-light); margin-bottom: 2.5rem;
-      display: flex; align-items: center; gap: 0.6rem;
+    .process-header { text-align: center; margin-bottom: 5rem; }
+
+    /* Journey container */
+    .process-journey {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
     }
-    [dir="rtl"] .visual-tag { letter-spacing: 0; font-size: 0.8rem; }
-    .visual-tag::before { content: ''; width: 1.5rem; height: 1px; background: var(--forest-light); }
-    .pv-step { padding: 1.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .pv-step:last-child { border-bottom: none; }
-    .pv-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
-    .pv-circle {
-      width: 2.5rem; height: 2.5rem; background: var(--amber);
+
+    /* ── The vertical road ── */
+    .journey-road {
+      position: absolute;
+      left: 50%; top: 0; bottom: 0;
+      width: 2px;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+    .journey-road-track {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--border) 0px, var(--border) 10px,
+        transparent 10px, transparent 22px
+      );
+      opacity: 0.65;
+      transition: background 0.4s;
+    }
+    .journey-road-fill {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 0%;
+      background: linear-gradient(to bottom, var(--forest-mid), var(--forest-light));
+      border-radius: 1px;
+      transition: height 0.12s ease-out;
+      box-shadow: 0 0 12px rgba(82,183,136,0.3);
+    }
+
+    /* ── Step row ── */
+    .journey-step {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 5rem;
+      z-index: 1;
+    }
+    .journey-step:last-child { margin-bottom: 0; }
+
+    /* ── Node circle on the road ── */
+    .journey-node {
+      position: absolute;
+      left: 50%; top: 0.5rem;
+      transform: translateX(-50%) scale(0.6);
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 2.5px solid var(--border);
+      background: var(--bg-alt);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; font-weight: 700; color: #111C18; flex-shrink: 0;
+      font-family: var(--font-display);
+      font-size: 0.88rem; font-weight: 400;
+      color: var(--muted);
+      z-index: 2;
+      opacity: 0;
+      transition: border-color 0.5s, background 0.5s, color 0.5s,
+                  transform 0.6s cubic-bezier(0.34,1.56,0.64,1), opacity 0.5s;
     }
-    .pv-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; color: #fff; }
-    .pv-desc { font-size: 0.83rem; color: rgba(255,255,255,0.46); line-height: 1.65; padding-inline-start: 3.5rem; }
-    [dir="rtl"] .pv-desc { line-height: 1.9; }
-    .pv-connector { width: 1px; height: 1.5rem; background: rgba(255,255,255,0.12); margin-inline-start: 1.25rem; }
-    .solution-cta { margin-top: 4rem; }
+    .journey-step.active .journey-node {
+      border-color: var(--forest-mid);
+      background: var(--forest);
+      color: #fff;
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+      box-shadow: 0 0 0 6px rgba(82,183,136,0.12), 0 0 24px rgba(82,183,136,0.18);
+    }
+
+    /* ── Content card ── */
+    .journey-card {
+      width: calc(50% - 3.5rem);
+      position: relative;
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    /* Watermark background text behind card */
+    .journey-card::before {
+      content: attr(data-bg);
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      text-transform: uppercase;
+      color: var(--forest-mid);
+      opacity: 0;
+      transition: opacity 0.9s 0.15s;
+      pointer-events: none;
+      white-space: nowrap;
+      line-height: 1; z-index: -1;
+    }
+
+    /* Odd steps (1st, 3rd): card on the LEFT */
+    .journey-step:nth-child(odd) {
+      justify-content: flex-start;
+    }
+    .journey-step:nth-child(odd) .journey-card {
+      text-align: right;
+      padding-right: 2.5rem;
+      transform: translateX(-40px);
+    }
+    .journey-step:nth-child(odd) .journey-card::before {
+      right: 2.5rem; top: -0.75rem;
+    }
+
+    /* Even steps (2nd): card on the RIGHT */
+    .journey-step:nth-child(even) {
+      justify-content: flex-end;
+    }
+    .journey-step:nth-child(even) .journey-card {
+      text-align: left;
+      padding-left: 2.5rem;
+      transform: translateX(40px);
+    }
+    .journey-step:nth-child(even) .journey-card::before {
+      left: 2.5rem; top: -0.75rem;
+    }
+
+    /* Active state — card slides in and stays */
+    .journey-step.active .journey-card {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .journey-step.active .journey-card::before {
+      opacity: 0.12;
+    }
+    [data-theme="dark"] .journey-step.active .journey-card::before {
+      opacity: 0.06;
+    }
+
+    /* ── Card inner elements ── */
+    .jc-label {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--forest-mid); margin-bottom: 0.5rem;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] .jc-label { letter-spacing: 0; font-size: 0.78rem; }
+    .jc-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+      font-weight: 400; color: var(--ink);
+      margin-bottom: 0.7rem; line-height: 1.2;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] .jc-title { line-height: 1.35; }
+    .jc-desc {
+      font-size: 0.88rem; color: var(--slate);
+      line-height: 1.7; margin-bottom: 1.25rem;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] .jc-desc { line-height: 1.9; }
+
+    /* CTA centered at the end of the timeline */
+    .journey-cta {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding-top: 3rem;
+    }
+
+    .journey-note {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.82rem;
+      color: var(--muted); font-style: italic;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] .journey-note { font-style: normal; }
+
+    /* ── RTL: mirror the alternation ── */
+    [dir="rtl"] .journey-step:nth-child(odd) .journey-card {
+      text-align: left; padding-right: 0; padding-left: 2.5rem;
+    }
+    [dir="rtl"] .journey-step:nth-child(odd) .journey-card::before {
+      right: auto; left: 2.5rem;
+    }
+    [dir="rtl"] .journey-step:nth-child(even) .journey-card {
+      text-align: right; padding-left: 0; padding-right: 2.5rem;
+    }
+    [dir="rtl"] .journey-step:nth-child(even) .journey-card::before {
+      left: auto; right: 2.5rem;
+    }
+
+    /* ── Mobile: road on left, cards on right ── */
+    @media (max-width: 760px) {
+      .journey-road {
+        left: 1.5rem;
+      }
+      .journey-node {
+        left: 1.5rem;
+        width: 42px; height: 42px;
+        font-size: 0.78rem;
+      }
+      .journey-step.active .journey-node {
+        transform: translateX(-50%) scale(1);
+      }
+      .journey-step:nth-child(odd),
+      .journey-step:nth-child(even) {
+        justify-content: flex-end;
+      }
+      .journey-step:nth-child(odd) .journey-card,
+      .journey-step:nth-child(even) .journey-card {
+        width: calc(100% - 4.5rem);
+        text-align: left;
+        padding-left: 1.5rem; padding-right: 0;
+        transform: translateX(30px);
+      }
+      .journey-step:nth-child(odd) .journey-card::before,
+      .journey-step:nth-child(even) .journey-card::before {
+        left: 1.5rem; right: auto;
+      }
+      .journey-step.active .journey-card {
+        transform: translateX(0);
+      }
+      .journey-step:nth-child(odd) .jc-cta-row,
+      .journey-step:nth-child(even) .jc-cta-row {
+        justify-content: flex-start;
+      }
+      .journey-step { margin-bottom: 3.5rem; }
+    }
+
+    /* ── RTL mobile ── */
+    @media (max-width: 760px) {
+      [dir="rtl"] .journey-road { left: auto; right: 1.5rem; }
+      [dir="rtl"] .journey-node {
+        left: auto; right: 1.5rem;
+        transform: translateX(50%) scale(0.6);
+      }
+      [dir="rtl"] .journey-step.active .journey-node {
+        transform: translateX(50%) scale(1);
+      }
+      [dir="rtl"] .journey-step:nth-child(odd) .journey-card,
+      [dir="rtl"] .journey-step:nth-child(even) .journey-card {
+        text-align: right;
+        padding-right: 1.5rem; padding-left: 0;
+        transform: translateX(-30px);
+      }
+      [dir="rtl"] .journey-step.active .journey-card {
+        transform: translateX(0);
+      }
+      [dir="rtl"] .journey-step:nth-child(odd) .journey-card::before,
+      [dir="rtl"] .journey-step:nth-child(even) .journey-card::before {
+        right: 1.5rem; left: auto;
+      }
+      [dir="rtl"] .journey-step:nth-child(odd) .jc-cta-row,
+      [dir="rtl"] .journey-step:nth-child(even) .jc-cta-row {
+        justify-content: flex-end;
+      }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .journey-step .journey-card,
+      .journey-step .journey-node {
+        opacity: 1; transform: none;
+      }
+      .journey-step .journey-node {
+        transform: translateX(-50%) scale(1);
+      }
+      .journey-step .journey-card::before { opacity: 0.1; }
+      .journey-road-fill { height: 100% !important; }
+    }
 
     /* ── RESULTS ── */
-    #results { background: var(--bg-card); transition: background 0.4s; }
-    .results-layout {
-      display: grid; grid-template-columns: 1fr 1.4fr;
-      gap: 6rem; align-items: center; margin-top: 4.5rem;
+    #results {
+      background: var(--bg-card); transition: background 0.4s;
+      padding: 7rem 5vw;
     }
-    @media (max-width: 900px) { .results-layout { grid-template-columns: 1fr; gap: 3rem; } }
-    .results-intro-text {
+    .results-header {
+      text-align: center; max-width: 650px;
+      margin: 0 auto 4.5rem;
+    }
+    .results-header .section-intro {
       font-family: var(--font-display);
-      font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
       font-weight: 300; font-style: italic;
-      color: var(--charcoal); line-height: 1.5; transition: color 0.4s;
+      color: var(--charcoal); line-height: 1.6;
+      margin-top: 1rem; transition: color 0.4s;
     }
-    [dir="rtl"] .results-intro-text { font-style: normal; line-height: 1.7; }
-    .results-intro-text strong { font-style: normal; font-weight: 600; color: var(--forest-mid); }
-    .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); transition: background 0.4s; }
+    [dir="rtl"] .results-header .section-intro { font-style: normal; line-height: 1.8; }
+    .results-header .section-intro strong {
+      font-style: normal; font-weight: 600; color: var(--forest-mid);
+    }
+    .results-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    @media (max-width: 900px) { .results-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 550px) { .results-grid { grid-template-columns: 1fr; } }
     .result-card {
-      background: var(--bg-card); padding: 2.25rem 2rem;
-      display: flex; flex-direction: column; gap: 0.7rem;
-      transition: background 0.3s, var(--transition-theme); position: relative; overflow: hidden;
+      background: var(--bg-alt); padding: 2.25rem 2rem;
+      display: flex; flex-direction: column; gap: 0.8rem;
+      position: relative; overflow: hidden;
+      border: 1px solid var(--border);
+      transition: background 0.35s, border-color 0.35s, transform 0.35s, box-shadow 0.35s, var(--transition-theme);
     }
-    .result-card::after {
-      content: ''; position: absolute; inset-block: 0; inset-inline-start: 0;
-      width: 0; background: var(--forest-mid);
-      transition: width 0.35s cubic-bezier(0.16,1,0.3,1);
+    .result-card:hover {
+      background: var(--bg-card);
+      border-color: var(--forest-mid);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
     }
-    .result-card:hover { background: var(--bg-alt); }
-    .result-card:hover::after { width: 3px; }
-    .result-icon { font-size: 1.5rem; }
-    .result-card h4 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--ink); transition: color 0.4s; }
-    .result-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.65; transition: color 0.4s; }
+    [data-theme="dark"] .result-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .result-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--forest-mid);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    [dir="rtl"] .result-card::before { transform-origin: right; }
+    .result-card:hover::before { transform: scaleX(1); }
+    .result-icon {
+      width: 2.75rem; height: 2.75rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(45,106,79,0.08);
+      border-radius: 10px;
+      margin-bottom: 0.35rem;
+      transition: background 0.35s, color 0.35s;
+    }
+    .result-icon ion-icon {
+      font-size: 1.3rem; color: var(--forest-mid);
+      transition: color 0.35s;
+    }
+    [data-theme="dark"] .result-icon {
+      background: rgba(82,183,136,0.08);
+    }
+    [data-theme="dark"] .result-icon ion-icon {
+      color: var(--forest-light);
+    }
+    .result-card:hover .result-icon {
+      background: var(--forest-mid);
+    }
+    .result-card:hover .result-icon ion-icon {
+      color: #fff;
+    }
+    .result-card h3 {
+      font-family: var(--font-display); font-size: 1.15rem;
+      font-weight: 400; color: var(--ink); transition: color 0.4s;
+    }
+    .result-card p {
+      font-size: 0.85rem; color: var(--slate);
+      line-height: 1.7; transition: color 0.4s;
+    }
     [dir="rtl"] .result-card p { line-height: 1.9; }
 
     /* ── ABOUT ── */
-    #about { background: var(--bg-alt); position: relative; overflow: hidden; transition: background 0.4s; }
+    #about {
+      background: var(--bg-alt); position: relative;
+      overflow: hidden; transition: background 0.4s;
+      padding: 7rem 5vw;
+    }
     #about::before {
       content: 'AS';
       position: absolute; right: 2%; top: 50%; transform: translateY(-50%);
@@ -517,14 +827,15 @@
     }
     [dir="rtl"] #about::before { right: auto; left: 2%; }
     .about-layout {
-      display: grid; grid-template-columns: 1fr 1.2fr;
-      gap: 6rem; align-items: center; position: relative; z-index: 1;
+      display: grid; grid-template-columns: 0.8fr 1.2fr;
+      gap: 5rem; align-items: start; position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
     }
-    @media (max-width: 900px) { .about-layout { grid-template-columns: 1fr; gap: 3rem; } }
-    .about-badge-area { display: flex; flex-direction: column; gap: 1.5rem; }
+    @media (max-width: 900px) { .about-layout { grid-template-columns: 1fr; gap: 3.5rem; } }
+    .about-badge-area { display: flex; flex-direction: column; gap: 2rem; }
     .about-portrait-frame {
-      width: 100%; aspect-ratio: 3/4; max-width: 360px;
-      background: var(--border); position: relative; overflow: visible; transition: background 0.4s;
+      width: 100%; aspect-ratio: 4/5; max-width: 340px;
+      position: relative; overflow: visible;
     }
     .portrait-placeholder {
       width: 100%; height: 100%;
@@ -534,71 +845,185 @@
       transition: background 0.4s;
     }
     .portrait-placeholder .initials {
-      font-family: var(--font-display); font-size: 5rem; font-weight: 300; color: rgba(255,255,255,0.7);
+      font-family: var(--font-display); font-size: 4.5rem;
+      font-weight: 300; color: rgba(255,255,255,0.7);
     }
     .portrait-placeholder .placeholder-label {
-      font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase;
+      font-size: 0.7rem; color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em; text-transform: uppercase;
     }
     .portrait-accent {
-      position: absolute; bottom: -1.25rem; right: -1.25rem;
-      width: 7rem; height: 7rem; background: var(--amber); z-index: -1;
+      position: absolute; bottom: -1rem; right: -1rem;
+      width: 6rem; height: 6rem; background: var(--amber); z-index: -1;
     }
-    [dir="rtl"] .portrait-accent { right: auto; left: -1.25rem; }
+    [dir="rtl"] .portrait-accent { right: auto; left: -1rem; }
     .portrait-line {
-      position: absolute; top: -1.25rem; left: -1.25rem;
-      width: 7rem; height: 7rem; border: 2px solid var(--forest-light); z-index: -1;
+      position: absolute; top: -1rem; left: -1rem;
+      width: 6rem; height: 6rem; border: 2px solid var(--forest-light); z-index: -1;
       transition: border-color 0.4s;
     }
-    [dir="rtl"] .portrait-line { left: auto; right: -1.25rem; }
-    .about-badges { display: flex; flex-direction: column; gap: 0.65rem; }
-    .badge {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 1.25rem; background: var(--bg-card);
-      border-inline-start: 3px solid var(--forest-mid);
-      transition: border-color 0.3s, transform 0.3s, background 0.4s;
+    [dir="rtl"] .portrait-line { left: auto; right: -1rem; }
+    .about-badges {
+      display: flex; flex-direction: column; gap: 0.55rem;
+      max-width: 340px;
     }
-    .badge:hover { border-inline-start-color: var(--amber); transform: translateX(4px); }
-    [dir="rtl"] .badge:hover { transform: translateX(-4px); }
-    .badge-icon { font-size: 1.1rem; }
-    .badge-text { font-size: 0.82rem; color: var(--charcoal); line-height: 1.4; transition: color 0.4s; }
-    .badge-text strong { display: block; font-weight: 600; color: var(--ink); transition: color 0.4s; }
-    .about-copy h2 { margin-bottom: 1.75rem; }
-    .about-copy p { font-size: 1rem; color: var(--slate); line-height: 1.8; margin-bottom: 1.25rem; transition: color 0.4s; }
-    [dir="rtl"] .about-copy p { line-height: 2; }
-    .about-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .badge {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: var(--bg-card);
+      border-inline-start: 3px solid var(--forest-mid);
+      transition: border-color 0.3s, transform 0.3s, background 0.4s, box-shadow 0.3s;
+    }
+    .badge:hover {
+      border-inline-start-color: var(--amber);
+      transform: translateX(6px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    [dir="rtl"] .badge:hover { transform: translateX(-6px); }
+    .badge-icon {
+      width: 2.25rem; height: 2.25rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(45,106,79,0.08); border-radius: 8px;
+      flex-shrink: 0;
+      transition: background 0.35s;
+    }
+    .badge-icon ion-icon {
+      font-size: 1.1rem; color: var(--forest-mid);
+      transition: color 0.35s;
+    }
+    [data-theme="dark"] .badge-icon {
+      background: rgba(82,183,136,0.08);
+    }
+    [data-theme="dark"] .badge-icon ion-icon {
+      color: var(--forest-light);
+    }
+    .badge:hover .badge-icon {
+      background: var(--amber);
+    }
+    .badge:hover .badge-icon ion-icon {
+      color: #fff;
+    }
+    .badge-text {
+      font-size: 0.8rem; color: var(--charcoal);
+      line-height: 1.4; transition: color 0.4s;
+    }
+    .badge-text strong {
+      display: block; font-weight: 600;
+      color: var(--ink); transition: color 0.4s;
+    }
+    .about-copy { padding-top: 0.5rem; }
+    .about-copy .section-tag { margin-bottom: 1.25rem; }
+    .about-copy h2 { margin-bottom: 2rem; }
+    .about-copy p {
+      font-size: 0.95rem; color: var(--slate);
+      line-height: 1.85; margin-bottom: 1.1rem;
+      transition: color 0.4s;
+    }
+    [dir="rtl"] .about-copy p { line-height: 2.05; }
+    .about-cta-row {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
 
     /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--bg-darker); transition: background 0.4s; }
+    #testimonials {
+      background: var(--bg-darker); transition: background 0.4s;
+      padding: 7rem 5vw; overflow: hidden;
+    }
     #testimonials .section-tag { color: var(--forest-light); border-color: rgba(82,183,136,0.3); background: rgba(82,183,136,0.05); }
     #testimonials h2 { color: #fff; }
     #testimonials h2 em { color: var(--forest-light); }
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1px; margin-top: 4rem; background: rgba(255,255,255,0.05);
+    .testimonials-header {
+      text-align: center; max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+    .slider-wrapper {
+      position: relative; max-width: 900px; margin: 0 auto;
+    }
+    .slider-track {
+      display: flex; overflow: hidden;
     }
     .testimonial {
-      background: var(--bg-darker); padding: 3rem 2.5rem;
-      display: flex; flex-direction: column; gap: 1.5rem;
-      transition: background 0.3s, var(--transition-theme);
+      min-width: 100%; padding: 0 1rem;
+      box-sizing: border-box;
+      opacity: 0; transform: scale(0.95);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      pointer-events: none; position: absolute; top: 0; left: 0; width: 100%;
     }
-    .testimonial:hover { background: #0D2A1C; }
-    [data-theme="dark"] .testimonial:hover { background: #0B2016; }
-    .t-stars { color: var(--amber); font-size: 0.85rem; letter-spacing: 0.12em; }
+    .testimonial.active {
+      opacity: 1; transform: scale(1);
+      pointer-events: auto; position: relative;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 3rem 3rem 2.5rem;
+      display: flex; flex-direction: column; gap: 1.75rem;
+      transition: background 0.35s, border-color 0.35s;
+    }
+    .testimonial-card:hover {
+      background: rgba(82,183,136,0.05);
+      border-color: rgba(82,183,136,0.2);
+    }
+    .t-quote-icon {
+      color: var(--forest-light); opacity: 0.3;
+      font-size: 2.5rem; line-height: 1;
+      font-family: var(--font-display);
+    }
     .t-quote {
-      font-family: var(--font-display); font-size: 1.15rem; font-weight: 300;
-      font-style: italic; color: rgba(255,255,255,0.78); line-height: 1.7;
+      font-family: var(--font-display); font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      font-weight: 300; font-style: italic;
+      color: rgba(255,255,255,0.82); line-height: 1.75;
     }
-    [dir="rtl"] .t-quote { font-style: normal; line-height: 1.9; }
-    .t-quote::before { content: '\201C'; color: var(--forest-light); font-size: 1.6rem; }
-    .t-author { display: flex; align-items: center; gap: 1rem; margin-top: auto; }
+    [dir="rtl"] .t-quote { font-style: normal; line-height: 1.95; }
+    .t-divider {
+      width: 3rem; height: 2px;
+      background: var(--forest-mid); opacity: 0.4;
+    }
+    .t-author { display: flex; align-items: center; gap: 1rem; }
     .t-avatar {
-      width: 42px; height: 42px; background: var(--forest-mid);
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 0.95rem; font-weight: 400;
-      color: #fff; flex-shrink: 0; transition: background 0.4s;
+      font-family: var(--font-display); font-size: 1rem; font-weight: 400;
+      color: rgba(255,255,255,0.8); flex-shrink: 0;
     }
-    .t-name { font-size: 0.88rem; font-weight: 600; color: rgba(255,255,255,0.85); }
-    .t-role { font-size: 0.76rem; color: rgba(255,255,255,0.4); }
+    .t-name { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.9); }
+    .t-role { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.15rem; }
+    .slider-controls {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .slider-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent; color: rgba(255,255,255,0.6);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .slider-btn:hover {
+      border-color: var(--forest-light); color: #fff;
+      background: rgba(82,183,136,0.1);
+    }
+    .slider-btn ion-icon { font-size: 1.2rem; }
+    .slider-dots {
+      display: flex; gap: 0.5rem; align-items: center;
+    }
+    .slider-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); border: none;
+      cursor: pointer; transition: background 0.3s, transform 0.3s;
+      padding: 0;
+    }
+    .slider-dot.active {
+      background: var(--forest-light);
+      transform: scale(1.3);
+    }
+    .slider-dot:hover { background: rgba(255,255,255,0.45); }
+    @media (max-width: 600px) {
+      .testimonial-card { padding: 2rem 1.75rem 1.75rem; }
+      .slider-btn { width: 38px; height: 38px; }
+    }
 
     /* ── MARQUEE ── */
     .marquee-track {
@@ -658,6 +1083,31 @@
     [dir="rtl"] .avail-indicator { letter-spacing: 0; font-size: 0.8rem; }
     .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--forest-light); animation: pulse 2s ease-in-out infinite; }
 
+    /* ── SCROLL TO TOP ── */
+    .scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.35s, transform 0.35s, background 0.35s, border-color 0.35s, color 0.35s, box-shadow 0.35s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    [data-theme="dark"] .scroll-top { box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+    .scroll-top.visible {
+      opacity: 1; pointer-events: auto;
+      transform: translateY(0);
+    }
+    .scroll-top:hover {
+      background: var(--forest-mid); border-color: var(--forest-mid);
+      color: #fff;
+    }
+    .scroll-top ion-icon { font-size: 1.25rem; }
+    [dir="rtl"] .scroll-top { right: auto; left: 2rem; }
+
     /* ── FOOTER ── */
     footer {
       padding: 2rem 5vw;
@@ -697,11 +1147,40 @@
     @media (max-width: 600px) {
       nav { padding: 1rem 4vw; }
       .hero-stats { gap: 1.75rem; flex-wrap: wrap; }
-      .about-portrait-frame { max-width: 260px; }
+      .about-portrait-frame { max-width: 240px; }
       #about::before { display: none; }
-      .results-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── ULTRA-WIDE CONSTRAINT ── */
+    @media (min-width: 1600px) {
+      section, footer { padding-inline: calc((100% - 1400px) / 2); }
+      nav { padding-inline: calc((100vw - 1400px) / 2); }
+      nav.scrolled { padding-inline: calc((100vw - 1400px) / 2); }
+    }
+
+    /* ── CUSTOM CURSOR: desktop only ── */
+    @media (hover: hover) and (pointer: fine) {
+      body, body a, body button { cursor: none; }
+    }
+    @media (hover: none), (pointer: coarse) {
+      .cursor-dot, .cursor-ring { display: none !important; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      .cursor-dot, .cursor-ring { display: none !important; }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      .marquee-inner { animation: none !important; }
     }
   </style>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 
@@ -720,7 +1199,7 @@
     </ul>
 
     <!-- THEME TOGGLE -->
-    <button class="icon-btn icon-theme" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <button class="icon-btn icon-theme" id="themeToggle" aria-label="Toggle dark mode">
       <!-- Sun (shown in light mode) -->
       <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="5"/>
@@ -736,7 +1215,7 @@
     </button>
 
     <!-- LANG TOGGLE -->
-    <button class="icon-btn" id="langToggle" onclick="toggleLang()">
+    <button class="icon-btn" id="langToggle" aria-label="Toggle language">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"/>
         <line x1="2" y1="12" x2="22" y2="12"/>
@@ -745,9 +1224,14 @@
       <span data-i18n="lang.toggle">عربي</span>
     </button>
 
-    <a class="nav-cta" href="mailto:hello@alaashahin.com" data-i18n="nav.cta">Let's Talk</a>
+    <a class="nav-cta" href="https://calendar.app.google/dumF27oX3baRqBdA6" data-i18n="nav.cta">Book Now</a>
+    <button class="hamburger" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<main>
 
 <!-- HERO -->
 <section id="hero">
@@ -765,7 +1249,7 @@
       I help small service-based businesses increase conversions and delight clients by auditing, designing, and building smooth, high-converting workflows and digital experiences.
     </p>
     <div class="hero-btns reveal reveal-delay-3">
-      <a class="btn-primary" href="mailto:hello@alaashahin.com" data-i18n-html="hero.btn1">Let's Fix Your Client Journey <span>→</span></a>
+      <a class="btn-primary" href="https://calendar.app.google/dumF27oX3baRqBdA6" data-i18n-html="hero.btn1">Let's Fix Your Client Journey <span>→</span></a>
       <a class="btn-outline" href="#solution" data-i18n="hero.btn2">See How It Works</a>
     </div>
     <div class="hero-stats reveal reveal-delay-4">
@@ -827,19 +1311,19 @@
   <div class="problem-grid">
     <div class="problem-card reveal reveal-delay-1">
       <div class="problem-num">01</div>
-      <div class="problem-icon">📉</div>
+      <div class="problem-icon"><ion-icon name="trending-down-outline"></ion-icon></div>
       <h3 data-i18n="p1.h3">Low Conversion Rates</h3>
       <p data-i18n="p1.p">Potential clients drop off before paying because your processes are unclear, confusing, or full of friction that erodes trust before they even reach checkout.</p>
     </div>
     <div class="problem-card reveal reveal-delay-2">
       <div class="problem-num">02</div>
-      <div class="problem-icon">🌀</div>
+      <div class="problem-icon"><ion-icon name="sync-outline"></ion-icon></div>
       <h3 data-i18n="p2.h3">Messy Onboarding & Operations</h3>
       <p data-i18n="p2.p">Disorganized workflows waste your team's time, create bottlenecks, and leave staff feeling overwhelmed — making it impossible to scale without chaos.</p>
     </div>
     <div class="problem-card reveal reveal-delay-3">
       <div class="problem-num">03</div>
-      <div class="problem-icon">🚪</div>
+      <div class="problem-icon"><ion-icon name="log-out-outline"></ion-icon></div>
       <h3 data-i18n="p3.h3">Clients Dropping Off Mid-Journey</h3>
       <p data-i18n="p3.p">Missed follow-ups and gaps in communication silently cost you revenue every month. Clients leave not because of your service — but because of the experience around it.</p>
     </div>
@@ -849,85 +1333,79 @@
 
 <!-- SOLUTION -->
 <section id="solution">
-  <div class="reveal"><span class="section-tag" data-i18n="solution.tag">The Process</span></div>
-  <h2 class="reveal reveal-delay-1" data-i18n-html="solution.h2">How I <em>Transform</em><br>Your Business</h2>
-  <div class="solution-layout">
-    <div class="step-list">
-      <div class="step reveal reveal-delay-1">
-        <div class="step-num">01</div>
-        <div class="step-body">
-          <div class="step-label" data-i18n="s1.label">Audit</div>
-          <h3 data-i18n="s1.h3">Discover the Gaps</h3>
-          <p data-i18n="s1.p">Review your current processes, customer touchpoints, and client journey end-to-end to find exactly where revenue is leaking and where opportunities are being missed.</p>
-        </div>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num">02</div>
-        <div class="step-body">
-          <div class="step-label" data-i18n="s2.label">Design</div>
-          <h3 data-i18n="s2.h3">Build the Blueprint</h3>
-          <p data-i18n="s2.p">Create clear, practical workflows and processes that improve efficiency, reduce client drop-off, and make your operations easy to manage — without burning out your team.</p>
-        </div>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num">03</div>
-        <div class="step-body">
-          <div class="step-label" data-i18n="s3.label">Build</div>
-          <h3 data-i18n="s3.h3">Implement & Scale</h3>
-          <p data-i18n="s3.p">Implement the solutions — systems, workflows, and digital tools — so your business runs smoothly and every client receives a premium, consistent experience.</p>
-        </div>
+  <div class="process-header">
+    <div class="reveal"><span class="section-tag" data-i18n="solution.tag">The Process</span></div>
+    <h2 class="reveal reveal-delay-1" data-i18n-html="solution.h2">How I <em>Transform</em><br>Your Business</h2>
+  </div>
+
+  <div class="process-journey" id="processJourney">
+    <!-- The road line -->
+    <div class="journey-road">
+      <div class="journey-road-track"></div>
+      <div class="journey-road-fill" id="journeyRoadFill"></div>
+    </div>
+
+    <!-- Step 1: Audit — card on left -->
+    <div class="journey-step" data-step="0">
+      <div class="journey-node"><span>01</span></div>
+      <div class="journey-card" data-bg="Audit">
+        <div class="jc-label" data-i18n="s1.label">Audit</div>
+        <h3 class="jc-title" data-i18n="s1.h3">Discover the Gaps</h3>
+        <p class="jc-desc" data-i18n="s1.p">Review your current processes, customer touchpoints, and client journey end-to-end to find exactly where revenue is leaking and where opportunities are being missed.</p>
       </div>
     </div>
-    <div class="solution-visual reveal reveal-delay-2">
-      <div class="visual-tag" data-i18n="visual.tag">Your Transformation</div>
-      <div>
-        <div class="pv-step">
-          <div class="pv-header"><div class="pv-circle">A</div><div class="pv-name" data-i18n="pv1.name">Audit</div></div>
-          <div class="pv-desc" data-i18n="pv1.desc">Map your full client journey · Identify revenue leaks · Benchmark against best practices</div>
-        </div>
-        <div class="pv-connector"></div>
-        <div class="pv-step">
-          <div class="pv-header"><div class="pv-circle">D</div><div class="pv-name" data-i18n="pv2.name">Design</div></div>
-          <div class="pv-desc" data-i18n="pv2.desc">Redesign workflows · Create frictionless touchpoints · Document standard operating procedures</div>
-        </div>
-        <div class="pv-connector"></div>
-        <div class="pv-step">
-          <div class="pv-header"><div class="pv-circle">B</div><div class="pv-name" data-i18n="pv3.name">Build</div></div>
-          <div class="pv-desc" data-i18n="pv3.desc">Implement tools & systems · Train your team · Monitor and iterate for results</div>
-        </div>
-      </div>
-      <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1)">
-        <p style="font-size:0.78rem;color:rgba(255,255,255,0.36);line-height:1.7" data-i18n="visual.note">Every engagement is tailored to your specific business. No templates. No one-size-fits-all solutions.</p>
+
+    <!-- Step 2: Design — card on right -->
+    <div class="journey-step" data-step="1">
+      <div class="journey-node"><span>02</span></div>
+      <div class="journey-card" data-bg="Design">
+        <div class="jc-label" data-i18n="s2.label">Design</div>
+        <h3 class="jc-title" data-i18n="s2.h3">Build the Blueprint</h3>
+        <p class="jc-desc" data-i18n="s2.p">Create clear, practical workflows and processes that improve efficiency, reduce client drop-off, and make your operations easy to manage — without burning out your team.</p>
       </div>
     </div>
+
+    <!-- Step 3: Build — card on left -->
+    <div class="journey-step" data-step="2">
+      <div class="journey-node"><span>03</span></div>
+      <div class="journey-card" data-bg="Build">
+        <div class="jc-label" data-i18n="s3.label">Build</div>
+        <h3 class="jc-title" data-i18n="s3.h3">Implement & Scale</h3>
+        <p class="jc-desc" data-i18n="s3.p">Implement the solutions — systems, workflows, and digital tools — so your business runs smoothly and every client receives a premium, consistent experience.</p>
+      </div>
+    </div>
+
+    <!-- End-of-road CTA -->
+    <div class="journey-cta reveal">
+      <a class="btn-primary" href="https://calendar.app.google/dumF27oX3baRqBdA6" data-i18n-html="solution.cta">See How I Can Transform Your Business <span>→</span></a>
+    </div>
   </div>
-  <div class="solution-cta reveal">
-    <a class="btn-primary" href="mailto:hello@alaashahin.com" data-i18n-html="solution.cta">See How I Can Transform Your Business <span>→</span></a>
-  </div>
+
+  <p class="journey-note reveal" data-i18n="visual.note">Every engagement is tailored to your specific business. No templates. No one-size-fits-all solutions.</p>
 </section>
 
 <!-- RESULTS -->
 <section id="results">
-  <div class="reveal"><span class="section-tag" data-i18n="results.tag">The Outcome</span></div>
-  <h2 class="reveal reveal-delay-1" data-i18n-html="results.h2">What You Get When<br>We Work <em>Together</em></h2>
-  <div class="results-layout">
-    <div class="results-intro-text reveal reveal-delay-1" data-i18n-html="results.intro">You don't just get a consultant. You get a <strong>complete transformation</strong> — from messy and stagnant to smooth, scalable, and <strong>profitable.</strong></div>
-    <div class="results-grid reveal reveal-delay-2">
-      <div class="result-card"><div class="result-icon">📈</div><h4 data-i18n="r1.h4">Higher Conversions</h4><p data-i18n="r1.p">Turn more leads into paying clients by removing friction and clarifying every step of the buyer journey.</p></div>
-      <div class="result-card"><div class="result-icon">⚙️</div><h4 data-i18n="r2.h4">Smooth Operations</h4><p data-i18n="r2.p">Reduce staff stress and wasted time with workflows that actually make sense for your team and your clients.</p></div>
-      <div class="result-card"><div class="result-icon">✨</div><h4 data-i18n="r3.h4">Delighted Clients</h4><p data-i18n="r3.p">Give every client a premium, stress-free experience that earns referrals and builds long-term loyalty.</p></div>
-      <div class="result-card"><div class="result-icon">💰</div><h4 data-i18n="r4.h4">Revenue Growth</h4><p data-i18n="r4.p">Fixing drop-offs and inefficient processes directly increases your income — often within weeks.</p></div>
-      <div class="result-card"><div class="result-icon">🛠</div><h4 data-i18n="r5.h4">Practical Systems</h4><p data-i18n="r5.p">Walk away with usable processes and tools your team can actually operate — not theoretical frameworks.</p></div>
-      <div class="result-card"><div class="result-icon">🚀</div><h4 data-i18n="r6.h4">Scalable Foundation</h4><p data-i18n="r6.p">Build a business that can grow without breaking — where quality stays consistent as volume increases.</p></div>
-    </div>
+  <div class="results-header">
+    <div class="reveal"><span class="section-tag" data-i18n="results.tag">The Outcome</span></div>
+    <h2 class="reveal reveal-delay-1" data-i18n-html="results.h2">What You Get When<br>We Work <em>Together</em></h2>
+    <p class="section-intro reveal reveal-delay-2" data-i18n-html="results.intro">You don't just get a consultant. You get a <strong>complete transformation</strong> — from messy and stagnant to smooth, scalable, and <strong>profitable.</strong></p>
+  </div>
+  <div class="results-grid">
+    <div class="result-card reveal reveal-delay-1"><div class="result-icon"><ion-icon name="trending-up-outline"></ion-icon></div><h3 data-i18n="r1.h4">Higher Conversions</h3><p data-i18n="r1.p">Turn more leads into paying clients by removing friction and clarifying every step of the buyer journey.</p></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-icon"><ion-icon name="settings-outline"></ion-icon></div><h3 data-i18n="r2.h4">Smooth Operations</h3><p data-i18n="r2.p">Reduce staff stress and wasted time with workflows that actually make sense for your team and your clients.</p></div>
+    <div class="result-card reveal reveal-delay-3"><div class="result-icon"><ion-icon name="heart-outline"></ion-icon></div><h3 data-i18n="r3.h4">Delighted Clients</h3><p data-i18n="r3.p">Give every client a premium, stress-free experience that earns referrals and builds long-term loyalty.</p></div>
+    <div class="result-card reveal reveal-delay-1"><div class="result-icon"><ion-icon name="wallet-outline"></ion-icon></div><h3 data-i18n="r4.h4">Revenue Growth</h3><p data-i18n="r4.p">Fixing drop-offs and inefficient processes directly increases your income — often within weeks.</p></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-icon"><ion-icon name="construct-outline"></ion-icon></div><h3 data-i18n="r5.h4">Practical Systems</h3><p data-i18n="r5.p">Walk away with usable processes and tools your team can actually operate — not theoretical frameworks.</p></div>
+    <div class="result-card reveal reveal-delay-3"><div class="result-icon"><ion-icon name="expand-outline"></ion-icon></div><h3 data-i18n="r6.h4">Scalable Foundation</h3><p data-i18n="r6.p">Build a business that can grow without breaking — where quality stays consistent as volume increases.</p></div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="about-layout">
-    <div class="about-badge-area reveal">
-      <div class="about-portrait-frame">
+    <div class="about-badge-area">
+      <div class="about-portrait-frame reveal">
         <div class="portrait-placeholder">
           <div class="initials">AS</div>
           <div class="placeholder-label" data-i18n="portrait.label">Your Photo Here</div>
@@ -936,19 +1414,19 @@
         <div class="portrait-line"></div>
       </div>
       <div class="about-badges">
-        <div class="badge"><div class="badge-icon">🎓</div><div class="badge-text"><strong data-i18n="b1.strong">University of Michigan</strong><span data-i18n="b1.text">Bachelor's & Master's in UX Research & Design</span></div></div>
-        <div class="badge"><div class="badge-icon">🏛</div><div class="badge-text"><strong data-i18n="b2.strong">MIT Certified</strong><span data-i18n="b2.text">Design Thinking Certification</span></div></div>
-        <div class="badge"><div class="badge-icon">🌍</div><div class="badge-text"><strong data-i18n="b3.strong">Multi-National Experience</strong><span data-i18n="b3.text">United States & GCC Markets</span></div></div>
+        <div class="badge reveal reveal-delay-1"><div class="badge-icon"><ion-icon name="school-outline"></ion-icon></div><div class="badge-text"><strong data-i18n="b1.strong">University of Michigan</strong><span data-i18n="b1.text">Bachelor's & Master's in UX Research & Design</span></div></div>
+        <div class="badge reveal reveal-delay-2"><div class="badge-icon"><ion-icon name="ribbon-outline"></ion-icon></div><div class="badge-text"><strong data-i18n="b2.strong">MIT Certified</strong><span data-i18n="b2.text">Design Thinking Certification</span></div></div>
+        <div class="badge reveal reveal-delay-3"><div class="badge-icon"><ion-icon name="globe-outline"></ion-icon></div><div class="badge-text"><strong data-i18n="b3.strong">Multi-National Experience</strong><span data-i18n="b3.text">United States & GCC Markets</span></div></div>
       </div>
     </div>
-    <div class="about-copy reveal reveal-delay-1">
-      <span class="section-tag" data-i18n="about.tag">About</span>
-      <h2 data-i18n-html="about.h2">Meet <em>Alaa Shahin</em> —<br>Your Experience Design Specialist</h2>
-      <p data-i18n="about.p1">Hi, I'm Alaa Shahin. I help small service-based businesses turn messy processes into smooth, high-converting systems that delight clients and grow revenue.</p>
-      <p data-i18n="about.p2">With a Bachelor's and Master's in UX Research & Design from the University of Michigan, an MIT Design Thinking certification, and multi-national experience across the US and GCC, I bring a rare blend of academic rigor and real-world business strategy.</p>
-      <p data-i18n="about.p3">I specialize in helping business owners streamline workflows, improve customer experiences, and implement practical solutions that drive measurable growth — not just pretty decks that sit on a shelf.</p>
-      <div class="about-cta-row">
-        <a class="btn-primary" href="mailto:hello@alaashahin.com" data-i18n-html="about.cta">Let's Talk About Your Business <span>→</span></a>
+    <div class="about-copy">
+      <div class="reveal"><span class="section-tag" data-i18n="about.tag">About</span></div>
+      <h2 class="reveal reveal-delay-1" data-i18n-html="about.h2">Meet <em>Alaa Shahin</em> —<br>Your Experience Design Specialist</h2>
+      <p class="reveal reveal-delay-2" data-i18n="about.p1">Hi, I'm Alaa Shahin. I help small service-based businesses turn messy processes into smooth, high-converting systems that delight clients and grow revenue.</p>
+      <p class="reveal reveal-delay-3" data-i18n="about.p2">With a Bachelor's and Master's in UX Research & Design from the University of Michigan, an MIT Design Thinking certification, and multi-national experience across the US and GCC, I bring a rare blend of academic rigor and real-world business strategy.</p>
+      <p class="reveal reveal-delay-4" data-i18n="about.p3">I specialize in helping business owners streamline workflows, improve customer experiences, and implement practical solutions that drive measurable growth — not just pretty decks that sit on a shelf.</p>
+      <div class="about-cta-row reveal reveal-delay-5">
+        <a class="btn-primary" href="https://calendar.app.google/dumF27oX3baRqBdA6" data-i18n-html="about.cta">Let's Talk About Your Business <span>→</span></a>
       </div>
     </div>
   </div>
@@ -956,23 +1434,45 @@
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <div class="reveal"><span class="section-tag" data-i18n="t.tag">Social Proof</span></div>
-  <h2 class="reveal reveal-delay-1" data-i18n-html="t.h2">What Business Owners<br>Are <em>Saying</em></h2>
-  <div class="testimonials-grid">
-    <div class="testimonial reveal reveal-delay-1">
-      <div class="t-stars">★★★★★</div>
-      <p class="t-quote" data-i18n="t1.quote">Working with Alaa completely transformed our client onboarding process. Our conversion rate went from 12% to 35% in just a few weeks!</p>
-      <div class="t-author"><div class="t-avatar">SC</div><div><div class="t-name" data-i18n="t1.name">Small Clinic Owner</div><div class="t-role" data-i18n="t1.role">Healthcare Services</div></div></div>
+  <div class="testimonials-header">
+    <div class="reveal"><span class="section-tag" data-i18n="t.tag">Social Proof</span></div>
+    <h2 class="reveal reveal-delay-1" data-i18n-html="t.h2">What Business Owners<br>Are <em>Saying</em></h2>
+  </div>
+  <div class="slider-wrapper reveal reveal-delay-2">
+    <div class="slider-track">
+      <div class="testimonial active">
+        <div class="testimonial-card">
+          <div class="t-quote-icon">“</div>
+          <p class="t-quote" data-i18n="t1.quote">Working with Alaa completely transformed our client onboarding process. Our conversion rate went from 12% to 35% in just a few weeks!</p>
+          <div class="t-divider"></div>
+          <div class="t-author"><div class="t-avatar">SC</div><div><div class="t-name" data-i18n="t1.name">Small Clinic Owner</div><div class="t-role" data-i18n="t1.role">Healthcare Services</div></div></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-card">
+          <div class="t-quote-icon">“</div>
+          <p class="t-quote" data-i18n="t2.quote">Alaa helped us streamline workflows and fix the messy gaps in our processes. Our team feels organized and confident for the first time in years.</p>
+          <div class="t-divider"></div>
+          <div class="t-author"><div class="t-avatar">LS</div><div><div class="t-name" data-i18n="t2.name">Luxury Salon Owner</div><div class="t-role" data-i18n="t2.role">Beauty & Wellness</div></div></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-card">
+          <div class="t-quote-icon">“</div>
+          <p class="t-quote" data-i18n="t3.quote">The systems and solutions Alaa built for us made our business feel like a premium experience for our clients. We can finally scale without losing quality.</p>
+          <div class="t-divider"></div>
+          <div class="t-author"><div class="t-avatar">CB</div><div><div class="t-name" data-i18n="t3.name">Coaching Business Owner</div><div class="t-role" data-i18n="t3.role">Professional Coaching</div></div></div>
+        </div>
+      </div>
     </div>
-    <div class="testimonial reveal reveal-delay-2">
-      <div class="t-stars">★★★★★</div>
-      <p class="t-quote" data-i18n="t2.quote">Alaa helped us streamline workflows and fix the messy gaps in our processes. Our team feels organized and confident for the first time in years.</p>
-      <div class="t-author"><div class="t-avatar">LS</div><div><div class="t-name" data-i18n="t2.name">Luxury Salon Owner</div><div class="t-role" data-i18n="t2.role">Beauty & Wellness</div></div></div>
-    </div>
-    <div class="testimonial reveal reveal-delay-3">
-      <div class="t-stars">★★★★★</div>
-      <p class="t-quote" data-i18n="t3.quote">The systems and solutions Alaa built for us made our business feel like a premium experience for our clients. We can finally scale without losing quality.</p>
-      <div class="t-author"><div class="t-avatar">CB</div><div><div class="t-name" data-i18n="t3.name">Coaching Business Owner</div><div class="t-role" data-i18n="t3.role">Professional Coaching</div></div></div>
+    <div class="slider-controls">
+      <button class="slider-btn" id="sliderPrev" aria-label="Previous testimonial"><ion-icon name="chevron-back-outline"></ion-icon></button>
+      <div class="slider-dots" id="sliderDots">
+        <button class="slider-dot active" data-index="0" aria-label="Testimonial 1"></button>
+        <button class="slider-dot" data-index="1" aria-label="Testimonial 2"></button>
+        <button class="slider-dot" data-index="2" aria-label="Testimonial 3"></button>
+      </div>
+      <button class="slider-btn" id="sliderNext" aria-label="Next testimonial"><ion-icon name="chevron-forward-outline"></ion-icon></button>
     </div>
   </div>
 </section>
@@ -980,22 +1480,25 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-bg-shape"></div>
-  <div class="avail-indicator reveal"><span class="avail-dot"></span><span data-i18n="contact.avail">Currently Accepting New Clients</span></div>
-  <span class="section-tag reveal reveal-delay-1" data-i18n="contact.tag">Ready to Grow?</span>
+  <!-- <div class="avail-indicator reveal"><span class="avail-dot"></span><span data-i18n="contact.avail">Currently Accepting New Clients</span></div> -->
+
   <h2 class="reveal reveal-delay-2" data-i18n-html="contact.h2">Ready to <em>Transform</em><br>Your Business?</h2>
   <p class="section-intro reveal reveal-delay-3" data-i18n="contact.intro">Stop losing clients to messy processes, low conversions, or confusing systems. Let's work together to audit, design, and build a smooth, high-converting business experience.</p>
   <div class="contact-btns reveal reveal-delay-4">
-    <a class="btn-gold" href="mailto:hello@alaashahin.com" data-i18n-html="contact.btn1">Book Your Discovery Call <span>→</span></a>
-    <a class="btn-outline" href="mailto:hello@alaashahin.com" data-i18n="contact.btn2">Send a Message</a>
+    <a class="btn-gold" href="https://calendar.app.google/dumF27oX3baRqBdA6" data-i18n-html="contact.btn1">Book Your Discovery Call <span>→</span></a>
   </div>
-  <p class="contact-note reveal reveal-delay-5" data-i18n-html="contact.note"><strong>Limited availability.</strong> I work with a select number of businesses at a time to ensure maximum impact.</p>
+  <!-- <p class="contact-note reveal reveal-delay-5" data-i18n-html="contact.note"><strong>Limited availability.</strong> I work with a select number of businesses at a time to ensure maximum impact.</p> -->
 </section>
+
+</main>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><ion-icon name="arrow-up-outline"></ion-icon></button>
 
 <!-- FOOTER -->
 <footer>
   <a class="footer-logo" href="#">Alaa <span style="color:var(--forest-mid)">Shahin</span> <span class="nav-logo-dot"></span></a>
-  <p data-i18n-html="footer.line">Experience Design Specialist · <a href="mailto:hello@alaashahin.com">hello@alaashahin.com</a></p>
-  <p data-i18n="footer.copy">© 2025 Alaa Shahin. All rights reserved.</p>
+  <p data-i18n-html="footer.line">Experience Design Specialist · <a href="mailto:contact@alaashahin.com">contact@alaashahin.com</a></p>
+  <p data-i18n="footer.copy">© 2026 Alaa Shahin. All rights reserved.</p>
 </footer>
 
 <script>
@@ -1004,7 +1507,7 @@
 ════════════════════════════════════════ */
 const T = {
   en: {
-    'nav.problem':'The Problem','nav.process':'Process','nav.results':'Results','nav.about':'About','nav.cta':"Let's Talk",
+    'nav.problem':'The Problem','nav.process':'Process','nav.results':'Results','nav.about':'About','nav.cta':"Book Now",
     'hero.tag':'Experience Design Specialist',
     'hero.h1':'Stop Losing Clients<br>& Fix <em>Messy Processes</em> —<br>Turn Your Business<br>Into a <span class="underline-word">Growth Engine</span>',
     'hero.sub':'I help small service-based businesses increase conversions and delight clients by auditing, designing, and building smooth, high-converting workflows and digital experiences.',
@@ -1059,8 +1562,8 @@ const T = {
     'contact.intro':"Stop losing clients to messy processes, low conversions, or confusing systems. Let's work together to audit, design, and build a smooth, high-converting business experience.",
     'contact.btn1':'Book Your Discovery Call <span>→</span>','contact.btn2':'Send a Message',
     'contact.note':'<strong>Limited availability.</strong> I work with a select number of businesses at a time to ensure maximum impact.',
-    'footer.line':'Experience Design Specialist · <a href="mailto:hello@alaashahin.com">hello@alaashahin.com</a>',
-    'footer.copy':'© 2025 Alaa Shahin. All rights reserved.','lang.toggle':'عربي'
+    'footer.line':'Experience Design Specialist · <a href="mailto:contact@alaashahin.com">contact@alaashahin.com</a>',
+    'footer.copy':'© 2026 Alaa Shahin. All rights reserved.','lang.toggle':'عربي'
   },
   ar: {
     'nav.problem':'المشكلة','nav.process':'المنهجية','nav.results':'النتائج','nav.about':'عني','nav.cta':'تواصل معي',
@@ -1118,8 +1621,8 @@ const T = {
     'contact.intro':'توقف عن خسارة العملاء بسبب العمليات الفوضوية ومعدلات التحويل المنخفضة. دعنا نعمل معاً على تدقيق وتصميم وبناء تجربة أعمال سلسة وعالية التحويل.',
     'contact.btn1':'احجز مكالمة الاستكشاف <span>←</span>','contact.btn2':'أرسل رسالة',
     'contact.note':'<strong>أماكن محدودة.</strong> أعمل مع عدد محدود من الشركات في آنٍ واحد لضمان أقصى تأثير.',
-    'footer.line':'أخصائي تصميم التجربة · <a href="mailto:hello@alaashahin.com">hello@alaashahin.com</a>',
-    'footer.copy':'© 2025 علاء شاهين. جميع الحقوق محفوظة.','lang.toggle':'English'
+    'footer.line':'أخصائي تصميم التجربة · <a href="https://calendar.app.google/dumF27oX3baRqBdA6">hello@alaashahin.com</a>',
+    'footer.copy':'© 2026 علاء شاهين. جميع الحقوق محفوظة.','lang.toggle':'English'
   }
 };
 
@@ -1127,7 +1630,7 @@ const T = {
    STATE
 ════════════════════════════════════════ */
 let lang = 'en';
-let theme = localStorage.getItem('theme') || 'light';
+let theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
 /* ════════════════════════════════════════
    THEME
@@ -1150,7 +1653,7 @@ applyTheme(theme); // apply on load
 function buildMarquee(l) {
   const items = T[l].marquee;
   let html = '';
-  for (let r = 0; r < 2; r++) {
+  for (let r = 0; r < 4; r++) {
     items.forEach(item => {
       html += `<span class="marquee-item">${item} <span class="marquee-sep">◆</span></span>`;
     });
@@ -1190,18 +1693,95 @@ function toggleLang() {
 applyTranslations(lang); // init
 
 /* ════════════════════════════════════════
+   EVENT LISTENERS
+════════════════════════════════════════ */
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+document.getElementById('langToggle').addEventListener('click', toggleLang);
+
+// Hamburger menu
+const menuToggle = document.getElementById('menuToggle');
+const navLinksEl = document.querySelector('.nav-links');
+menuToggle.addEventListener('click', () => {
+  const isOpen = navLinksEl.classList.toggle('open');
+  menuToggle.classList.toggle('active');
+  menuToggle.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+navLinksEl.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinksEl.classList.remove('open');
+    menuToggle.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ════════════════════════════════════════
+   TESTIMONIALS SLIDER
+════════════════════════════════════════ */
+(function() {
+  const slides = document.querySelectorAll('.testimonial');
+  const dots = document.querySelectorAll('.slider-dot');
+  const prevBtn = document.getElementById('sliderPrev');
+  const nextBtn = document.getElementById('sliderNext');
+  let current = 0;
+  let autoTimer;
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function() { goTo(current + 1); }, 6000);
+  }
+
+  prevBtn.addEventListener('click', function() { goTo(current - 1); });
+  nextBtn.addEventListener('click', function() { goTo(current + 1); });
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() { goTo(+this.dataset.index); });
+  });
+
+  // Swipe support for mobile
+  let startX = 0;
+  const track = document.querySelector('.slider-track');
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  resetAuto();
+})();
+
+/* ════════════════════════════════════════
    CURSOR
 ════════════════════════════════════════ */
 const dot = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
-document.addEventListener('mousemove', e => {
-  dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
-  ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.opacity = '0.9'; });
-  el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '0.6'; });
-});
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  let cursorRAF;
+  document.addEventListener('mousemove', e => {
+    if (cursorRAF) cancelAnimationFrame(cursorRAF);
+    cursorRAF = requestAnimationFrame(() => {
+      dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+    });
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.opacity = '0.9'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '0.6'; });
+  });
+} else {
+  dot.style.display = 'none';
+  ring.style.display = 'none';
+}
 
 /* ════════════════════════════════════════
    NAV SCROLL
@@ -1235,6 +1815,72 @@ const barObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.3 });
 document.querySelectorAll('.hc-1').forEach(el => barObs.observe(el));
+
+/* ════════════════════════════════════════
+   JOURNEY ROAD ANIMATION
+════════════════════════════════════════ */
+(function() {
+  const journey = document.getElementById('processJourney');
+  if (!journey) return;
+
+  const roadFill = document.getElementById('journeyRoadFill');
+  const steps = journey.querySelectorAll('.journey-step');
+
+  // Reduced-motion: show everything immediately
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    steps.forEach(s => s.classList.add('active'));
+    return;
+  }
+
+  // Intersection Observer: reveal each step and keep it
+  const stepObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('active');
+        stepObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '0px 0px -60px 0px' });
+  steps.forEach(s => stepObs.observe(s));
+
+  // Road fill: grows based on scroll position within the journey
+  let journeyRAF;
+  function updateRoad() {
+    const rect = journey.getBoundingClientRect();
+    const viewH = window.innerHeight;
+    const start = rect.top - viewH;
+    const end = rect.bottom - viewH * 0.4;
+    const range = end - start;
+    if (range <= 0) return;
+    const progress = Math.max(0, Math.min(1, -start / range));
+    if (roadFill) roadFill.style.height = (progress * 100) + '%';
+  }
+  window.addEventListener('scroll', () => {
+    if (journeyRAF) cancelAnimationFrame(journeyRAF);
+    journeyRAF = requestAnimationFrame(updateRoad);
+  }, { passive: true });
+  updateRoad();
+})();
+
+/* ════════════════════════════════════════
+   SCROLL TO TOP
+════════════════════════════════════════ */
+(function() {
+  const btn = document.getElementById('scrollTop');
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        btn.classList.toggle('visible', window.scrollY > 600);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
 </script>
 </body>
 </html>
