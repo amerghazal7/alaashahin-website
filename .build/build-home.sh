@@ -248,11 +248,11 @@ cat <<'PAGE2'
     <h2 class="h-xl" data-mask data-ar="لنكتشف ما الذي يقف بين اهتمام العميل و<em>الفعل</em>.">Let&rsquo;s find what&rsquo;s standing between customer interest and <em>action</em>.</h2>
     <p class="lede" data-ar="ابدأ بمكالمة استكشافية لمناقشة نقاط الألم التي تؤثر في عملائك وفريقك ومبيعاتك. سنحدّد معاً الخطوة التالية الأكثر فائدة لنشاطك.">Start with a discovery call to discuss the pain points affecting your customers, team, and sales. We&rsquo;ll identify the most useful next step for your business.</p>
     <div class="btn-group">
-      <a class="btn btn--amber" href="https://calendar.app.google/dumF27oX3baRqBdA6" target="_blank" rel="noopener">
+      <a class="btn" href="https://calendar.app.google/dumF27oX3baRqBdA6" target="_blank" rel="noopener">
         <span data-ar="احجز مكالمة استكشافية">Book a Discovery Call</span>
         <span class="btn__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
       </a>
-      <a class="btn btn--light" href="#ways-to-work" data-ar="اطّلع على طرق العمل معي">See How I Can Help</a>
+      <a class="btn btn--ghost" href="#ways-to-work" data-ar="اطّلع على طرق العمل معي">See How I Can Help</a>
     </div>
   </div>
 </section>
