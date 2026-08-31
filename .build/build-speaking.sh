@@ -183,7 +183,7 @@ cat <<'PAGE'
 </section>
 
 <!-- ═══ FAQ ════════════════════════════════════════════════ -->
-<section class="section section--tint">
+<section class="section">
   <div class="wrap">
     <div class="split">
       <div class="split__rail">

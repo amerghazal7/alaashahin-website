@@ -27,16 +27,16 @@ button, input, textarea, select { font: inherit; color: inherit; }
   --gold:        #B58B54;   /* muted metallic for fine detail */
 
   /* ground */
-  --cream:    #F7F4ED;
-  --cream-2:  #EFEAE0;
-  --cream-3:  #E5DFD2;
+  --cream:    #F7F4ED;   /* page ground — warm off-white */
+  --cream-2:  #E9EFE6;   /* light green — tinted section panels */
+  --cream-3:  #D6E0D1;   /* deeper light green — placeholder media */
   --surface:  #FFFFFF;
-  --surface-2:#FBF9F5;
-  --sand:     #F1E6D3;   /* warm panel — the closing invitation */
+  --surface-2:#FAFCF9;
+  --tint-deep:#DCE7D7;   /* light green, one step down — the closing band */
   --deep-panel: #1D3A2C; /* footer ground; --forest goes lighter in dark mode */
 
-  --line:      #E3DDD0;
-  --line-soft: #EDE8DD;
+  --line:      #DFE7DA;
+  --line-soft: #EAEFE5;
   --on-dark:   #F4F1E8;
 
   --nav-bg:    rgba(255,255,255,0.72);
@@ -84,7 +84,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
   --cream-3:  #1B3025;
   --surface:  #16261D;
   --surface-2:#1A2C21;
-  --sand:     #23301F;
+  --tint-deep:#22331F;
   --deep-panel: #16261D;
 
   --line:      #24382C;
@@ -814,11 +814,12 @@ a { text-decoration: none; }
 .section--dark .takeaways svg { color: var(--amber); }
 
 /* ── 21. CTA BAND — a rounded dark panel ──────────────────── */
-/* Warm sand, not forest — the footer directly below is the page's only
-   dark block, and stacking two greens read as one mass with a seam. */
+/* A deeper step of the same light green as the tinted panels — the footer
+   below is the page's only dark block, and two forests stacked read as one
+   mass with a seam. */
 .cta-band {
   position: relative; overflow: hidden;
-  background: var(--sand); color: var(--ink-2);
+  background: var(--tint-deep); color: var(--ink-2);
   margin-bottom: clamp(2rem, 4vw, 3.5rem);
   padding-block: clamp(3.5rem, 7vw, 6rem);
   text-align: center;

@@ -61,9 +61,9 @@ the reference sites Alaa picked, expressed in her own brand colours.
 | Token | Value | Used for |
 |---|---|---|
 | `--cream` | `#F7F4ED` | page ground (never pure white) |
-| `--cream-2` | `#EFEAE0` | tinted panels |
 | `--surface` | `#FFFFFF` | cards |
-| `--sand` | `#F1E6D3` | the closing CTA band |
+| `--cream-2` | `#E9EFE6` | light green — tinted section panels |
+| `--tint-deep` | `#DCE7D7` | light green, a step down — the closing CTA band |
 | `--deep-panel` | `#1D3A2C` | footer ground |
 | `--ink` / `-2` / `-3` / `-4` | one green hue at four strengths | all text |
 | `--forest` | `#1D3A2C` | dark panels, primary buttons |
@@ -77,9 +77,10 @@ Two rules keep it coherent:
 
 - **Every control is a pill.** Primary buttons carry a circular icon badge
   (`<span class="btn__arrow">`), not a bare arrow.
-- **Three tones never repeat back to back.** The page runs cream → tinted
-  panels → a sand CTA → the forest footer. The CTA band used to be forest
-  too, which stacked two greens against each other and read as one mass.
+- **Every page runs the same tone rhythm** and ends `cream > tint-deep >
+  forest`. Panels stay inside the brand's green family — the warm ground is
+  the only non-green surface. An earlier sand CTA sat outside the palette
+  and looked unrelated to the other sections.
   Use `--deep-panel` for deep grounds, never `--forest`: dark mode
   redefines `--forest` lighter so buttons stay legible, which would turn a
   footer bright green.
