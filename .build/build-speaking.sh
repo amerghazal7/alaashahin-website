@@ -22,7 +22,7 @@ cat <<'PAGE'
         <h1 class="hero__title h-xl" data-mask data-ar="امنح جمهورك طريقة <em>جديدة</em> لرؤية كل تجربة يصنعونها.">Give your audience a <em>new way</em> to see every experience they create.</h1>
         <p class="hero__sub lede reveal" style="--d:2" data-ar="قدّم لفعاليتك أو مؤسستك أو مجتمعك أفكاراً عملية مبنية على القصص حول تجربة المستخدم وسلوك العملاء والتفكير التصميمي والذكاء الاصطناعي.">Bring practical, story-led ideas about UX, customer behavior, design thinking, and AI to your event, organization, or community.</p>
         <div class="hero__btns btn-group reveal" style="--d:3">
-          <a class="btn" href="mailto:alaa@alaashahin.com?subject=Invite%20Alaa%20to%20Speak">
+          <a class="btn" href="mailto:contact@alaashahin.com?subject=Invite%20Alaa%20to%20Speak">
             <span data-ar="ادعُ آلاء للتحدث">Invite Alaa to Speak</span>
             <span class="btn__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
           </a>
@@ -49,7 +49,7 @@ cat <<'PAGE'
         <p class="eyebrow reveal" data-ar="مواضيع المحاضرات">Speaking topics</p>
         <h2 class="h-xl mt-2" data-mask data-ar="اختر الحوار الذي يحتاجه <em>جمهورك</em>.">Choose the conversation your <em>audience</em> needs.</h2>
         <div class="btn-group mt-3 reveal">
-          <a class="btn btn--ghost" href="mailto:alaa@alaashahin.com?subject=Speaking%20Topic%20Inquiry">
+          <a class="btn btn--ghost" href="mailto:contact@alaashahin.com?subject=Speaking%20Topic%20Inquiry">
             <span data-ar="اسأل عن موضوع محاضرة">Ask About a Speaking Topic</span>
             <span class="btn__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
           </a>
@@ -223,7 +223,7 @@ cat <<'PAGE'
     <h2 class="h-xl" data-mask data-ar="لنصنع الجلسة التي <em>سيتذكّرها</em> جمهورك ويستخدمها.">Let&rsquo;s create the session your audience will <em>remember</em> and use.</h2>
     <p class="lede" data-ar="شارك تفاصيل فعاليتك وجمهورك والتغيير الذي تريد أن تُحدثه الجلسة. وسأقترح أقوى موضوع وصيغة.">Share your event, audience, and the change you want the session to create. I&rsquo;ll recommend the strongest topic and format.</p>
     <div class="btn-group">
-      <a class="btn btn--amber" href="mailto:alaa@alaashahin.com?subject=Invite%20Alaa%20to%20Speak">
+      <a class="btn btn--amber" href="mailto:contact@alaashahin.com?subject=Invite%20Alaa%20to%20Speak">
         <span data-ar="ادعُ آلاء للتحدث">Invite Alaa to Speak</span>
         <span class="btn__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
       </a>

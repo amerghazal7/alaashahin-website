@@ -77,11 +77,11 @@ cat <<'PAGE'
       <div>
         <div class="form-status" data-form-status hidden role="status">
           <strong data-ar="شكراً لمشاركتك التفاصيل.">Thank you for sharing the details.</strong>
-          <span data-ar="سأراجع استفسارك وأردّ عليك بالخطوة التالية الأكثر فائدة. إن لم يفتح برنامج البريد لديك، راسلني مباشرةً على alaa@alaashahin.com.">I&rsquo;ll review your inquiry and reply with the most useful next step. If your email app didn&rsquo;t open, write to me directly at alaa@alaashahin.com.</span>
+          <span data-ar="سأراجع استفسارك وأردّ عليك بالخطوة التالية الأكثر فائدة. إن لم يفتح برنامج البريد لديك، راسلني مباشرةً على contact@alaashahin.com.">I&rsquo;ll review your inquiry and reply with the most useful next step. If your email app didn&rsquo;t open, write to me directly at contact@alaashahin.com.</span>
         </div>
 
         <noscript>
-          <p class="form-status" data-ar="النموذج يحتاج إلى JavaScript. راسلني مباشرةً على alaa@alaashahin.com.">This form needs JavaScript. Please email me directly at alaa@alaashahin.com.</p>
+          <p class="form-status" data-ar="النموذج يحتاج إلى JavaScript. راسلني مباشرةً على contact@alaashahin.com.">This form needs JavaScript. Please email me directly at contact@alaashahin.com.</p>
         </noscript>
 
         <form class="form" data-inquiry-form novalidate>
@@ -194,26 +194,26 @@ cat <<'PAGE'
     <h2 class="h-xl mt-2 measure" data-mask data-ar="تبحث عن طريقة <em>أبسط</em> للوصول إليّ؟">Looking for a <em>simpler</em> way to reach me?</h2>
 
     <p class="mt-3 reveal">
-      <a class="mail-big" href="mailto:alaa@alaashahin.com">
+      <a class="mail-big" href="mailto:contact@alaashahin.com">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.4"/><path d="m3 6.5 9 6.2 9-6.2"/></svg>
-        alaa@alaashahin.com
+        contact@alaashahin.com
       </a>
     </p>
 
     <div class="socials mt-3 reveal" style="--d:1">
-      <a class="social" href="https://www.linkedin.com/in/alaashahin" target="_blank" rel="noopener">
+      <a class="social" href="https://www.linkedin.com/in/thealaashahin/" target="_blank" rel="noopener">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.4 8.4h4.2V24H.4zM8.3 8.4h4v2.13h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.43V24h-4.19v-7.36c0-1.76-.03-4.02-2.45-4.02-2.45 0-2.83 1.92-2.83 3.9V24H8.3z"/></svg>
         LinkedIn
       </a>
-      <a class="social" href="https://www.instagram.com/alaashahin" target="_blank" rel="noopener">
+      <a class="social" href="https://www.instagram.com/thealaashahin/" target="_blank" rel="noopener">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
         Instagram
       </a>
-      <a class="social" href="https://www.youtube.com/@alaashahin" target="_blank" rel="noopener">
+      <a class="social" href="https://www.youtube.com/@TheAlaaShahin" target="_blank" rel="noopener">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5A3 3 0 0 0 .5 6.9C0 8.8 0 12 0 12s0 3.2.5 5.1a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.2 24 12 24 12s0-3.2-.5-5.1zM9.6 15.6V8.4l6.2 3.6z"/></svg>
         YouTube
       </a>
-      <a class="social" href="https://www.tiktok.com/@alaashahin" target="_blank" rel="noopener">
+      <a class="social" href="https://www.tiktok.com/@thealaashahin" target="_blank" rel="noopener">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-1.83-2.48V9.77a5.68 5.68 0 1 0 4.92 5.63V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z"/></svg>
         TikTok
       </a>

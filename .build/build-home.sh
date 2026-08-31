@@ -226,7 +226,7 @@ cat <<'PAGE2'
         <p class="eyebrow eyebrow--plain" data-ar="تعلّم مع آلاء">Learn with Alaa</p>
         <h2 class="card__title h-md mt-1" data-ar="أعد التفكير في كيفية تجربة عملائك لنشاطك.">Rethink how customers experience your business.</h2>
         <p class="card__desc" data-ar="استكشف مقاطع فيديو ودراسات حالة وموارد عملية حول تجربة المستخدم وسلوك العملاء والتفكير التصميمي والذكاء الاصطناعي.">Explore videos, case studies, and practical resources about UX, customer behavior, design thinking, and AI.</p>
-        <a class="tlink mt-3" href="https://www.youtube.com/@alaashahin" target="_blank" rel="noopener">
+        <a class="tlink mt-3" href="https://www.youtube.com/@TheAlaaShahin" target="_blank" rel="noopener">
           <span data-ar="ابدأ التعلّم">Start Learning</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
         </a>

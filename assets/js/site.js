@@ -293,7 +293,7 @@
         if (v) lines.push(name + ':\n' + v);
       });
       var subject = 'Website inquiry — ' + (d.get('help') || 'General') + ' — ' + (d.get('name') || '');
-      var href = 'mailto:alaa@alaashahin.com?subject=' + encodeURIComponent(subject) +
+      var href = 'mailto:contact@alaashahin.com?subject=' + encodeURIComponent(subject) +
                  '&body=' + encodeURIComponent(lines.join('\n\n'));
       window.location.href = href;
       var status = $('[data-form-status]', form.parentNode) || $('[data-form-status]');
