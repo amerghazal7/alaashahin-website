@@ -104,11 +104,18 @@
     var y = window.scrollY || 0;
     if (head) head.classList.toggle('is-stuck', y > 24);
     if (toTop) toTop.classList.toggle('is-on', y > 700);
+    sweepPending();
     updateProcessRail();
     ticking = false;
   }
   window.addEventListener('scroll', function () {
-    if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); }
+    if (ticking) return;
+    ticking = true;
+    /* rAF never fires while the tab is hidden, which would leave `ticking`
+       stuck true and stop every later scroll update — including the reveal
+       sweep. Run straight through in that case. */
+    if (document.hidden) onScroll();
+    else window.requestAnimationFrame(onScroll);
   }, { passive: true });
 
   if (toTop) {
@@ -149,6 +156,23 @@
   }
 
   /* ── REVEAL ──────────────────────────────────────────────── */
+  /* IntersectionObserver does the work, but it is throttled in background
+     tabs and can miss entirely in odd conditions. Everything observed also
+     goes on `pending`, which a cheap scroll sweep drains — so content can
+     never stay invisible. Elements leave the list once revealed. */
+  var pending = [];
+  function sweepPending() {
+    if (!pending.length) return;
+    var vh = window.innerHeight;
+    for (var i = pending.length - 1; i >= 0; i--) {
+      var r = pending[i].getBoundingClientRect();
+      if (r.top < vh * 0.94 && r.bottom > -vh * 0.5) {
+        pending[i].classList.add('is-in');
+        pending.splice(i, 1);
+      }
+    }
+  }
+
   var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
@@ -160,7 +184,8 @@
   function observeAll() {
     $$('[data-mask]').forEach(function (el) { if (!reduce) maskWords(el); el.classList.add('reveal-host'); });
     $$('.reveal, [data-mask], .pstep, .photo, .figure-card').forEach(function (el) {
-      if (io && !reduce) io.observe(el); else el.classList.add('is-in');
+      if (io && !reduce) { io.observe(el); pending.push(el); }
+      else el.classList.add('is-in');
     });
     if (reduce) $$('.pstep').forEach(function (s) { s.classList.add('is-in'); });
   }
@@ -313,26 +338,14 @@
     if (window.__stepIO) $$('.pstep').forEach(function (s) { window.__stepIO.observe(s); });
     onScroll();
     // first paint: anything already in view reveals immediately
-    window.requestAnimationFrame(function () {
-      $$('.reveal, [data-mask], .photo, .figure-card').forEach(function (el) {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add('is-in');
-      });
-    });
+    window.requestAnimationFrame(sweepPending);
     // safety net — content must never stay hidden because an observer
     // never fired (background tab, unsupported browser, blocked script).
-    window.setTimeout(function () {
-      $$('.reveal, [data-mask], .pstep, .photo, .figure-card').forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('is-in');
-      });
-    }, 2500);
+    window.setTimeout(sweepPending, 2500);
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState !== 'visible') return;
-      $$('.reveal, [data-mask], .pstep, .photo, .figure-card').forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('is-in');
-      });
+      if (document.visibilityState === 'visible') sweepPending();
     });
+    window.addEventListener('resize', sweepPending, { passive: true });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
