@@ -1,0 +1,203 @@
+# Shared fragments for page assembly (build-time only; output is plain static HTML)
+
+CAL="https://calendar.app.google/dumF27oX3baRqBdA6"
+MAIL="alaa@alaashahin.com"
+
+# ── HEAD ──────────────────────────────────────────────────────
+# args: $TITLE $DESC $CANON $PREFIX
+head_html() {
+cat <<HEAD
+<!DOCTYPE html>
+<!--
+  Built from .build/build-*.sh + .build/frag.sh (see .build/README.md).
+  Hand edits here are fine, but re-running the build overwrites them —
+  put shared header/footer/process changes in .build/frag.sh instead.
+-->
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>${TITLE}</title>
+<meta name="description" content="${DESC}">
+<link rel="canonical" href="https://alaashahin.com${CANON}">
+<meta name="theme-color" content="#F7F4ED">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alaa Shahin">
+<meta property="og:title" content="${TITLE}">
+<meta property="og:description" content="${DESC}">
+<meta property="og:url" content="https://alaashahin.com${CANON}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 rx=%2718%27 fill=%27%231B4332%27/><circle cx=%2750%27 cy=%2750%27 r=%2716%27 fill=%27%23F4A261%27/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Outfit:wght@300..700&family=Cairo:wght@300..800&display=swap">
+<link rel="stylesheet" href="${PREFIX}assets/css/site.css">
+
+<script>
+/* Set theme + direction before first paint (no flash). */
+(function(){
+  document.documentElement.classList.add('js');
+  try{
+    var t = localStorage.getItem('as-theme');
+    if(!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    var l = localStorage.getItem('as-lang') || 'en';
+    if(l === 'ar'){
+      document.documentElement.lang = 'ar';
+      document.documentElement.dir = 'rtl';
+      /* Hold the first paint until the Arabic copy is swapped in, so
+         Arabic visitors never see a flash of English. Released in site.js,
+         and by this timer if the script never runs. */
+      document.documentElement.classList.add('lang-boot');
+      setTimeout(function(){ document.documentElement.classList.remove('lang-boot'); }, 1500);
+    }
+  }catch(e){}
+})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-ar="تخطَّ إلى المحتوى">Skip to content</a>
+HEAD
+}
+
+# ── HEADER / NAV ──────────────────────────────────────────────
+# args: $PREFIX $CUR  (CUR = home|consulting|workshops|speaking|contact)
+nav_html() {
+  ca(){ [ "$CUR" = "$1" ] && printf ' aria-current="page"'; }
+cat <<NAV
+<header class="site-head">
+  <div class="wrap site-head__inner">
+    <a class="brand" href="${PREFIX}index.html" aria-label="Alaa Shahin — home" data-ar="آلاء <span class='brand__last'>شاهين</span> <span class='brand__dot' aria-hidden='true'></span>">Alaa <span class="brand__last">Shahin</span> <span class="brand__dot" aria-hidden="true"></span></a>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="${PREFIX}index.html"$(ca home) data-ar="الرئيسية">Home</a></li>
+        <li><a class="nav__link" href="${PREFIX}experience-ux-consulting/"$(ca consulting) data-ar="الاستشارات">Consulting</a></li>
+        <li><a class="nav__link" href="${PREFIX}workshops/"$(ca workshops) data-ar="ورش العمل والتدريب">Workshops &amp; Training</a></li>
+        <li><a class="nav__link" href="${PREFIX}speaking/"$(ca speaking) data-ar="المحاضرات">Speaking</a></li>
+        <li><a class="nav__link" href="${PREFIX}contact/"$(ca contact) data-ar="تواصل">Contact</a></li>
+      </ul>
+      <a class="btn head-cta head-cta--drawer" href="${CAL}" target="_blank" rel="noopener">
+        <span data-ar="احجز مكالمة">Book a Call</span>
+        <span class="btn__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+      </a>
+    </nav>
+
+    <div class="head-tools">
+      <button class="icon-btn icon-theme" type="button" data-theme-toggle aria-label="Toggle dark mode" data-ar-attr="aria-label:تبديل الوضع الداكن">
+        <svg class="i-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 13.3A8.4 8.4 0 0 1 10.7 3.5a8.5 8.5 0 1 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn" type="button" data-lang-toggle aria-label="Switch language" data-ar-attr="aria-label:تغيير اللغة">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8a15 15 0 0 1 0 18.4 15 15 0 0 1 0-18.4z"/></svg>
+        <span data-lang-label>ع</span>
+      </button>
+      <a class="btn head-cta head-cta--bar" href="${CAL}" target="_blank" rel="noopener">
+        <span data-ar="احجز مكالمة">Book a Call</span>
+        <span class="btn__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <button class="burger" type="button" data-burger aria-label="Menu" aria-expanded="false" aria-controls="site-nav" data-ar-attr="aria-label:القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+NAV
+}
+
+# ── FOOTER ────────────────────────────────────────────────────
+footer_html() {
+cat <<FOOT
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <a class="brand" href="${PREFIX}index.html" data-ar="آلاء <span class='brand__last'>شاهين</span> <span class='brand__dot' aria-hidden='true'></span>">Alaa <span class="brand__last">Shahin</span> <span class="brand__dot" aria-hidden="true"></span></a>
+        <p class="foot__tag" data-ar="أخصائية تصميم تجربة ومدرِّبة ومتحدثة. أساعد الشركات وفرق المنتجات على فهم عملائها وتحويل ذلك الفهم إلى تجارب تدعم النمو.">Experience design specialist, educator, and speaker. I help businesses and product teams understand their customers and turn that understanding into experiences that support growth.</p>
+        <div class="foot__socials">
+          <a class="foot__social" href="https://www.linkedin.com/in/alaashahin" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.4 8.4h4.2V24H.4zM8.3 8.4h4v2.13h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.43V24h-4.19v-7.36c0-1.76-.03-4.02-2.45-4.02-2.45 0-2.83 1.92-2.83 3.9V24H8.3z"/></svg></a>
+          <a class="foot__social" href="https://www.instagram.com/alaashahin" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg></a>
+          <a class="foot__social" href="https://www.youtube.com/@alaashahin" target="_blank" rel="noopener" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5A3 3 0 0 0 .5 6.9C0 8.8 0 12 0 12s0 3.2.5 5.1a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.2 24 12 24 12s0-3.2-.5-5.1zM9.6 15.6V8.4l6.2 3.6z"/></svg></a>
+          <a class="foot__social" href="https://www.tiktok.com/@alaashahin" target="_blank" rel="noopener" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-1.83-2.48V9.77a5.68 5.68 0 1 0 4.92 5.63V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z"/></svg></a>
+          <a class="foot__social" href="mailto:${MAIL}" aria-label="Email"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.4"/><path d="m3 6.5 9 6.2 9-6.2"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="foot__h" data-ar="التنقّل">Explore</h2>
+        <ul class="foot__list">
+          <li><a href="${PREFIX}index.html" data-ar="الرئيسية">Home</a></li>
+          <li><a href="${PREFIX}experience-ux-consulting/" data-ar="استشارات التجربة وتجربة المستخدم">Experience &amp; UX Consulting</a></li>
+          <li><a href="${PREFIX}workshops/" data-ar="ورش العمل والتدريب">Workshops &amp; Training</a></li>
+          <li><a href="${PREFIX}speaking/" data-ar="المحاضرات">Speaking</a></li>
+          <li><a href="${PREFIX}contact/" data-ar="تواصل">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="foot__h" data-ar="ابدأ من هنا">Start here</h2>
+        <ul class="foot__list">
+          <li><a href="${CAL}" target="_blank" rel="noopener" data-ar="احجز مكالمة استكشافية">Book a discovery call</a></li>
+          <li><a href="${PREFIX}contact/#inquiry-form" data-ar="أرسل استفساراً">Send an inquiry</a></li>
+          <li><a href="mailto:${MAIL}?subject=Invite%20Alaa%20to%20Speak" data-ar="ادعُ آلاء للتحدث">Invite Alaa to speak</a></li>
+          <li><a href="mailto:${MAIL}">${MAIL}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot__bot">
+      <span>&copy; <span data-year>2026</span> <span data-ar="آلاء شاهين. جميع الحقوق محفوظة.">Alaa Shahin. All rights reserved.</span></span>
+      <span data-ar="أخصائية تصميم تجربة · مدرِّبة · متحدثة">Experience Design Specialist &middot; Educator &middot; Speaker</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" type="button" data-to-top aria-label="Back to top" data-ar-attr="aria-label:العودة إلى الأعلى">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="${PREFIX}assets/js/site.js" defer></script>
+</body>
+</html>
+FOOT
+}
+
+# ── SHARED: the 3-step process (used on home + consulting) ────
+# args: $PREFIX  $DARK ("1" for dark band)
+process_html() {
+cat <<PROC
+<div class="process" data-process>
+  <div class="process__rail" aria-hidden="true"><div class="process__rail-fill"></div></div>
+
+  <article class="pstep">
+    <div class="pstep__node" aria-hidden="true">01</div>
+    <div class="pstep__card">
+      <span class="pstep__label" data-ar="التدقيق">Audit</span>
+      <h3 class="pstep__title h-md" data-ar="اكتشف الثغرات">Discover the Gaps</h3>
+      <p class="pstep__desc" data-ar="مراجعة عملياتك الحالية ونقاط التواصل مع العملاء ورحلة العميل من البداية إلى النهاية، لتحديد أين تتسرّب الإيرادات بالضبط وأين تضيع الفرص.">Review your current processes, customer touchpoints, and client journey end-to-end to find exactly where revenue is leaking and where opportunities are being missed.</p>
+    </div>
+  </article>
+
+  <article class="pstep">
+    <div class="pstep__node" aria-hidden="true">02</div>
+    <div class="pstep__card">
+      <span class="pstep__label" data-ar="التصميم">Design</span>
+      <h3 class="pstep__title h-md" data-ar="ابنِ المخطط">Build the Blueprint</h3>
+      <p class="pstep__desc" data-ar="إنشاء مسارات عمل وعمليات واضحة وعملية تُحسّن الكفاءة وتقلّل انسحاب العملاء وتجعل إدارة عملياتك أسهل — دون إرهاق فريقك.">Create clear, practical workflows and processes that improve efficiency, reduce client drop-off, and make your operations easy to manage &mdash; without burning out your team.</p>
+    </div>
+  </article>
+
+  <article class="pstep">
+    <div class="pstep__node" aria-hidden="true">03</div>
+    <div class="pstep__card">
+      <span class="pstep__label" data-ar="التنفيذ">Build</span>
+      <h3 class="pstep__title h-md" data-ar="نفّذ وتوسّع">Implement &amp; Scale</h3>
+      <p class="pstep__desc" data-ar="تنفيذ الحلول — الأنظمة ومسارات العمل والأدوات الرقمية — ليعمل نشاطك بسلاسة ويحصل كل عميل على تجربة متميزة ومتّسقة.">Implement the solutions &mdash; systems, workflows, and digital tools &mdash; so your business runs smoothly and every client receives a premium, consistent experience.</p>
+    </div>
+  </article>
+</div>
+PROC
+}
