@@ -117,19 +117,14 @@ cat <<'PAGE'
 </section>
 
 <!-- ═══ PROCESS ════════════════════════════════════════════ -->
-<section class="section section--dark" id="process">
+<section class="section" id="process">
   <div class="wrap">
-    <div class="split">
-      <div class="split__rail">
-        <p class="eyebrow reveal" data-ar="المنهجية">The Process</p>
-        <h2 class="h-xl mt-2" data-mask data-ar="كيف <em>أُحوّل</em> عملك">How I <em>Transform</em> Your Business</h2>
-      </div>
-      <div>
 PAGE
+P_EYEBROW="The Process"; P_EYEBROW_AR="المنهجية"
+P_TITLE="How I <em>Transform</em> Your Business"; P_TITLE_AR="كيف <em>أُحوّل</em> عملك"
+process_head_html
 process_html
 cat <<'PAGE2'
-      </div>
-    </div>
   </div>
 </section>
 

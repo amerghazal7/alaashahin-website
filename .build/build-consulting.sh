@@ -204,23 +204,20 @@ cat <<'PAGE'
 </section>
 
 <!-- ═══ PROCESS ════════════════════════════════════════════ -->
-<section class="section section--dark">
+<section class="section">
   <div class="wrap">
-    <div class="split">
-      <div class="split__rail">
-        <p class="eyebrow reveal" data-ar="المنهجية">The Process</p>
-        <h2 class="h-xl mt-2" data-mask data-ar="كيف <em>أُحوّل</em> عملك">How I <em>Transform</em> Your Business</h2>
-        <div class="btn-group mt-3 reveal">
-          <a class="btn btn--amber" href="https://calendar.app.google/dumF27oX3baRqBdA6" target="_blank" rel="noopener">
-            <span data-ar="احجز مكالمة استكشافية">Book a Discovery Call</span>
-            <span class="btn__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
-          </a>
-        </div>
-      </div>
-      <div>
 PAGE
+P_EYEBROW="The Process"; P_EYEBROW_AR="المنهجية"
+P_TITLE="How I <em>Transform</em> Your Business"; P_TITLE_AR="كيف <em>أُحوّل</em> عملك"
+process_head_html
 process_html
 cat <<'PAGE2'
+    <div class="process-cta reveal">
+      <div class="btn-group">
+        <a class="btn" href="https://calendar.app.google/dumF27oX3baRqBdA6" target="_blank" rel="noopener">
+          <span data-ar="احجز مكالمة استكشافية">Book a Discovery Call</span>
+          <span class="btn__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+        </a>
       </div>
     </div>
   </div>

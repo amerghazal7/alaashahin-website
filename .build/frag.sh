@@ -165,16 +165,33 @@ cat <<FOOT
 FOOT
 }
 
-# ── SHARED: the 3-step process (used on home + consulting) ────
-# args: $PREFIX  $DARK ("1" for dark band)
+# ── SHARED: the process section ───────────────────────────────
+# Centred header, centre rail, alternating sides, ghost watermarks.
+# Used identically on every page that has a process section; only the
+# heading and the three steps differ.
+
+# args: $P_EYEBROW $P_EYEBROW_AR $P_TITLE $P_TITLE_AR
+process_head_html() {
+cat <<PHEAD
+    <div class="process-head">
+      <p class="eyebrow reveal" data-ar="${P_EYEBROW_AR}">${P_EYEBROW}</p>
+      <h2 class="h-xl mt-2" data-mask data-ar="${P_TITLE_AR}">${P_TITLE}</h2>
+    </div>
+PHEAD
+}
+
+# The Audit / Design / Build steps (homepage + consulting).
 process_html() {
 cat <<PROC
 <div class="process" data-process>
-  <div class="process__rail" aria-hidden="true"><div class="process__rail-fill"></div></div>
+  <div class="process__rail" aria-hidden="true">
+    <div class="process__rail-track"></div>
+    <div class="process__rail-fill"></div>
+  </div>
 
   <article class="pstep">
     <div class="pstep__node" aria-hidden="true">01</div>
-    <div class="pstep__card">
+    <div class="pstep__body" data-ghost="Audit" data-ar-attr="data-ghost:تدقيق">
       <span class="pstep__label" data-ar="التدقيق">Audit</span>
       <h3 class="pstep__title h-md" data-ar="اكتشف الثغرات">Discover the Gaps</h3>
       <p class="pstep__desc" data-ar="مراجعة عملياتك الحالية ونقاط التواصل مع العملاء ورحلة العميل من البداية إلى النهاية، لتحديد أين تتسرّب الإيرادات بالضبط وأين تضيع الفرص.">Review your current processes, customer touchpoints, and client journey end-to-end to find exactly where revenue is leaking and where opportunities are being missed.</p>
@@ -183,7 +200,7 @@ cat <<PROC
 
   <article class="pstep">
     <div class="pstep__node" aria-hidden="true">02</div>
-    <div class="pstep__card">
+    <div class="pstep__body" data-ghost="Design" data-ar-attr="data-ghost:تصميم">
       <span class="pstep__label" data-ar="التصميم">Design</span>
       <h3 class="pstep__title h-md" data-ar="ابنِ المخطط">Build the Blueprint</h3>
       <p class="pstep__desc" data-ar="إنشاء مسارات عمل وعمليات واضحة وعملية تُحسّن الكفاءة وتقلّل انسحاب العملاء وتجعل إدارة عملياتك أسهل — دون إرهاق فريقك.">Create clear, practical workflows and processes that improve efficiency, reduce client drop-off, and make your operations easy to manage &mdash; without burning out your team.</p>
@@ -192,7 +209,7 @@ cat <<PROC
 
   <article class="pstep">
     <div class="pstep__node" aria-hidden="true">03</div>
-    <div class="pstep__card">
+    <div class="pstep__body" data-ghost="Build" data-ar-attr="data-ghost:تنفيذ">
       <span class="pstep__label" data-ar="التنفيذ">Build</span>
       <h3 class="pstep__title h-md" data-ar="نفّذ وتوسّع">Implement &amp; Scale</h3>
       <p class="pstep__desc" data-ar="تنفيذ الحلول — الأنظمة ومسارات العمل والأدوات الرقمية — ليعمل نشاطك بسلاسة ويحصل كل عميل على تجربة متميزة ومتّسقة.">Implement the solutions &mdash; systems, workflows, and digital tools &mdash; so your business runs smoothly and every client receives a premium, consistent experience.</p>
@@ -200,4 +217,43 @@ cat <<PROC
   </article>
 </div>
 PROC
+}
+
+# The Understand / Customize / Apply steps (workshops page) — same component.
+process_training_html() {
+cat <<PROCT
+<div class="process" data-process>
+  <div class="process__rail" aria-hidden="true">
+    <div class="process__rail-track"></div>
+    <div class="process__rail-fill"></div>
+  </div>
+
+  <article class="pstep">
+    <div class="pstep__node" aria-hidden="true">01</div>
+    <div class="pstep__body" data-ghost="Understand" data-ar-attr="data-ghost:الفهم">
+      <span class="pstep__label" data-ar="الفهم">Understand</span>
+      <h3 class="pstep__title h-md" data-ar="نوضّح جمهورك وأهدافك">We clarify your audience and goals</h3>
+      <p class="pstep__desc" data-ar="نوضّح جمهورك وأهدافك وتحدياتك الحالية، والتغيير الذي تريد أن تُحدثه الجلسة.">We clarify your audience, goals, current challenges, and the change you want the session to create.</p>
+    </div>
+  </article>
+
+  <article class="pstep">
+    <div class="pstep__node" aria-hidden="true">02</div>
+    <div class="pstep__body" data-ghost="Customize" data-ar-attr="data-ghost:التخصيص">
+      <span class="pstep__label" data-ar="التخصيص">Customize</span>
+      <h3 class="pstep__title h-md" data-ar="أُكيّف المحتوى ليكون ذا صلة">I adapt the content to make it relevant</h3>
+      <p class="pstep__desc" data-ar="أُكيّف المحتوى والأمثلة والتمارين لجعل التعلّم وثيق الصلة بواقع فريقك.">I adapt the content, examples, and exercises to make the learning relevant.</p>
+    </div>
+  </article>
+
+  <article class="pstep">
+    <div class="pstep__node" aria-hidden="true">03</div>
+    <div class="pstep__body" data-ghost="Apply" data-ar-attr="data-ghost:التطبيق">
+      <span class="pstep__label" data-ar="التطبيق">Apply</span>
+      <h3 class="pstep__title h-md" data-ar="يتدرّب المشاركون ويخرجون بأدوات">Participants practise and leave with tools</h3>
+      <p class="pstep__desc" data-ar="يتدرّب المشاركون على الأفكار ويخرجون بأدوات يمكنهم استخدامها في عملهم.">Participants practice the ideas and leave with tools they can use in their work.</p>
+    </div>
+  </article>
+</div>
+PROCT
 }

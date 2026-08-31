@@ -20,8 +20,22 @@ process block stay identical across all six pages.
 
 - **Page content** — edit the matching `build-<page>.sh`, then run
   `bash .build/build-all.sh`.
-- **Header, footer, nav links, the process steps** — edit `.build/frag.sh`,
+- **Header, footer, nav links, the process section** — edit `.build/frag.sh`,
   then rebuild. Changing them in one `index.html` only will drift.
+
+The process section is one shared component so it stays identical everywhere:
+
+| Function | Renders |
+|---|---|
+| `process_head_html` | centred eyebrow + heading (set `P_EYEBROW`/`P_TITLE` and the `_AR` pair first) |
+| `process_html` | the Audit / Design / Build steps — homepage and consulting |
+| `process_training_html` | the Understand / Customize / Apply steps — workshops |
+
+The layout is a centre rail with numbered nodes, steps alternating right /
+left / right, and an oversized ghost word behind each step driven by
+`data-ghost` (its Arabic comes from `data-ar-attr="data-ghost:…"`). The rail
+fills as you scroll, from `updateProcessRail` in `assets/js/site.js`. Below
+820px it collapses to a single column with the rail on the leading edge.
 - **Styling and behaviour** — edit `assets/css/site.css` and
   `assets/js/site.js` directly. No rebuild needed.
 
