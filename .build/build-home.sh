@@ -35,13 +35,23 @@ cat <<'PAGE'
 
       </div>
 
-      <figure class="portrait reveal" style="--d:2">
-        <!-- Replace this placeholder with a warm, confident portrait (approx. 1000x1250). -->
-        <div class="portrait__ph">
-          <span class="portrait__initials" aria-hidden="true">AS</span>
-          <span class="portrait__note" data-ar="ضع هنا صورة شخصية دافئة وواثقة">Portrait goes here &mdash; warm, confident, approachable</span>
+      <div class="photo-wrap reveal" style="--d:2">
+        <figure class="photo photo--portrait">
+          <!-- SWAP: assets/img/alaa-hero.jpg -->
+          <div class="photo__ph">
+            <svg class="photo__icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.4" y="5" width="19.2" height="15" rx="2.6"/><circle cx="12" cy="12.5" r="3.6"/><path d="M8.2 5 9.6 2.8h4.8L15.8 5"/></svg>
+            <span class="photo__label" data-ar="صورة شخصية دافئة وواثقة — احترافية وقريبة">A warm, confident portrait &mdash; professional and approachable</span>
+            <span class="photo__spec">alaa-hero.jpg &middot; 4:5</span>
+          </div>
+        </figure>
+        <div class="photo-chip">
+          <span class="photo-chip__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 1.8 8.2 12 13.4l10.2-5.2z"/><path d="M5.6 10.4v5.1c0 1.9 2.9 3.4 6.4 3.4s6.4-1.5 6.4-3.4v-5.1"/></svg></span>
+          <span>
+            <strong class="photo-chip__k" data-ar="ميشيغان &middot; MIT">U-Michigan &middot; MIT</strong>
+            <span class="photo-chip__v" data-ar="أبحاث تجربة المستخدم · التفكير التصميمي">UX Research &middot; Design Thinking</span>
+          </span>
         </div>
-      </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -65,6 +75,16 @@ cat <<'PAGE'
         <h2 class="cred__k h-sm" data-ar="خبرة دولية">International Experience</h2>
         <p class="cred__v" data-ar="عمل عبر أسواق وثقافات وبيئات أعمال مختلفة">Working across different markets, cultures, and business environments</p>
       </div>
+    </div>
+
+    <!-- SWAP each .logo-slot for <img src="assets/img/logo-N.svg" alt="Organization name"> -->
+    <div class="logos mt-3 reveal">
+      <p class="logos__note" data-ar="شعارات الجهات والفعاليات المعتمدة — تُضاف بعد الحصول على الإذن">Approved client, university and event logos go here &mdash; add once permission is confirmed</p>
+      <span class="logo-slot">Logo</span>
+      <span class="logo-slot">Logo</span>
+      <span class="logo-slot">Logo</span>
+      <span class="logo-slot">Logo</span>
+      <span class="logo-slot">Logo</span>
     </div>
   </div>
 </section>
@@ -175,13 +195,23 @@ cat <<'PAGE2'
 <section class="section section--tint" id="about">
   <div class="wrap">
     <div class="about__grid">
-      <figure class="portrait reveal">
-        <!-- Replace with a natural portrait, or a photo of Alaa working with a team or workshop audience. -->
-        <div class="portrait__ph">
-          <span class="portrait__initials" aria-hidden="true">AS</span>
-          <span class="portrait__note" data-ar="صورة طبيعية لآلاء، أو صورة أثناء العمل مع فريق أو جمهور ورشة">A natural portrait, or Alaa working with a team or workshop audience</span>
+      <div class="photo-wrap reveal">
+        <figure class="photo photo--portrait">
+          <!-- SWAP: assets/img/alaa-about.jpg -->
+          <div class="photo__ph">
+            <svg class="photo__icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.4" y="5" width="19.2" height="15" rx="2.6"/><circle cx="12" cy="12.5" r="3.6"/><path d="M8.2 5 9.6 2.8h4.8L15.8 5"/></svg>
+            <span class="photo__label" data-ar="صورة طبيعية لآلاء، أو أثناء العمل مع فريق أو جمهور ورشة">A natural portrait, or Alaa working with a team or workshop audience</span>
+            <span class="photo__spec">alaa-about.jpg &middot; 4:5</span>
+          </div>
+        </figure>
+        <div class="photo-chip">
+          <span class="photo-chip__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8a15 15 0 0 1 0 18.4 15 15 0 0 1 0-18.4z" fill="none" stroke="currentColor"/></svg></span>
+          <span>
+            <strong class="photo-chip__k" data-ar="سورية-أمريكية">Syrian-American</strong>
+            <span class="photo-chip__v" data-ar="تعمل عبر أسواق وثقافات مختلفة">Working across markets and cultures</span>
+          </span>
         </div>
-      </figure>
+      </div>
 
       <div class="about__copy">
         <p class="eyebrow reveal" data-ar="نبذة">About</p>

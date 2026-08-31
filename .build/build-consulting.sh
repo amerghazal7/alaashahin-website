@@ -14,7 +14,7 @@ cat <<'PAGE'
 <main id="main">
 
 <!-- ═══ HERO ═══════════════════════════════════════════════ -->
-<section class="hero hero--simple">
+<section class="hero">
   <div class="wrap">
     <div class="hero__grid">
       <div>
@@ -28,6 +28,34 @@ cat <<'PAGE'
           </a>
           <a class="btn btn--ghost" href="#consulting-options" data-ar="استكشف خيارات الاستشارة">Explore Consulting Options</a>
         </div>
+      </div>
+
+      <div class="figure-card reveal" style="--d:2">
+        <svg class="diagram" viewBox="0 0 460 190" role="img" aria-labelledby="dj-t">
+          <title id="dj-t">A customer journey with five touchpoints, the third flagged as the drop-off point</title>
+          <path class="d-track" d="M28 132 C 96 132, 96 66, 160 66 S 232 132, 296 132 S 368 58, 432 58"
+                fill="none" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 7"/>
+          <path class="d-path" style="--len:520" d="M28 132 C 96 132, 96 66, 160 66 S 232 132, 296 132 S 368 58, 432 58"
+                fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+          <g class="d-node"><circle cx="28"  cy="132" r="9" class="d-fill-mid"/></g>
+          <g class="d-node"><circle cx="160" cy="66"  r="9" class="d-fill-mid"/></g>
+          <g class="d-node">
+            <circle cx="296" cy="132" r="13" class="d-fill-amber"/>
+            <path d="M296 126.5v6M296 137h.01" stroke="#23301F" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+          <g class="d-node"><circle cx="432" cy="58"  r="9" class="d-fill-deep"/></g>
+
+          <g class="d-flag">
+            <rect x="238" y="158" width="118" height="24" rx="12" class="d-fill-soft"/>
+            <text class="d-text" x="297" y="173" text-anchor="middle" data-ar="نقطة احتكاك">friction point</text>
+          </g>
+
+          <text class="d-text" x="28"  y="158" text-anchor="middle" data-ar="الاكتشاف">discover</text>
+          <text class="d-text" x="160" y="52"  text-anchor="middle" data-ar="الاختيار">choose</text>
+          <text class="d-text" x="432" y="44"  text-anchor="middle" data-ar="العودة">return</text>
+        </svg>
+        <p class="figure-card__cap" data-ar="نرسم الرحلة كاملة، ثم نحدّد اللحظة التي ينسحب عندها العملاء.">We map the whole journey, then pinpoint the moment customers drop away.</p>
       </div>
     </div>
   </div>
@@ -177,7 +205,16 @@ cat <<'PAGE'
         <h2 class="h-xl mt-2" data-mask data-ar="حسّن اللحظات التي تُحدّد ما إذا كان العملاء <em>سيختارونك</em> ويبقون ويعودون.">Improve the moments shaping whether customers <em>choose</em> you, stay, and return.</h2>
       </div>
 
-      <div class="cards cards--2">
+      <div>
+        <figure class="photo photo--landscape reveal">
+          <!-- SWAP: assets/img/alaa-consulting.jpg -->
+          <div class="photo__ph">
+            <svg class="photo__icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.4" y="5" width="19.2" height="15" rx="2.6"/><circle cx="12" cy="12.5" r="3.6"/><path d="M8.2 5 9.6 2.8h4.8L15.8 5"/></svg>
+            <span class="photo__label" data-ar="آلاء أثناء العمل على خريطة رحلة أو مخطط خدمة مع عميل">Alaa working through a journey map or service blueprint with a client</span>
+            <span class="photo__spec">alaa-consulting.jpg &middot; 3:2</span>
+          </div>
+        </figure>
+      <div class="cards cards--2 mt-3">
         <article class="card reveal">
           <div class="card__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18.5c4-.5 5-9 9-9s5 5.5 9 5"/><circle cx="3" cy="18.5" r="1.6"/><circle cx="21" cy="14.5" r="1.6"/></svg></div>
           <h3 class="card__title h-sm" data-ar="رحلات العملاء">Customer Journeys</h3>
@@ -198,6 +235,7 @@ cat <<'PAGE'
           <h3 class="card__title h-sm" data-ar="العمليات ومسارات العمل">Processes &amp; Workflows</h3>
           <p class="card__desc" data-ar="استبدل العمل اليدوي والتسليمات الضائعة بطريقة أوضح لفريقك في التنفيذ.">Replace manual work and missed handoffs with a clearer way for your team to deliver.</p>
         </article>
+      </div>
       </div>
     </div>
   </div>

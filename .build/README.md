@@ -89,3 +89,25 @@ Two rules keep it coherent:
   copy lines up with plain-section copy at every viewport width. If you add a
   new panel type, add it to that shared rule rather than giving it its own
   width maths.
+
+## Visuals
+
+Three kinds, all defined in `assets/css/site.css`:
+
+- **Photo slots** — `<figure class="photo photo--portrait|landscape|wide">`.
+  Each holds its aspect ratio whether it contains the placeholder block or a
+  real `<img>`, so swapping one never shifts the layout. Every slot carries a
+  `<!-- SWAP: assets/img/… -->` comment; `grep -r "SWAP:" .` lists them all.
+  See `assets/img/README.md`.
+- **`.photo-chip`** — the small credential pill that overlaps a portrait's
+  corner. Optional; wrap the figure in `.photo-wrap` to position it.
+- **Diagrams** — abstract schematics drawn as inline SVG (`.diagram` inside
+  `.figure-card`), so they inherit the theme tokens, scale cleanly and need no
+  image files. Parts animate once the card scrolls into view: `.d-path`
+  draws itself, `.d-node` elements pop in sequence, `.d-flag` pulses. Fills
+  use the `.d-fill-*` classes rather than literal colours so dark mode works.
+  Label `<text>` elements take `data-ar` like any other copy.
+
+Reference markup for the three diagrams is parked in `.build/_diagrams.txt`.
+Nothing reads that file at build time — it is there to copy from when adding
+a new one.

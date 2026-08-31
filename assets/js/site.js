@@ -159,7 +159,7 @@
 
   function observeAll() {
     $$('[data-mask]').forEach(function (el) { if (!reduce) maskWords(el); el.classList.add('reveal-host'); });
-    $$('.reveal, [data-mask], .pstep').forEach(function (el) {
+    $$('.reveal, [data-mask], .pstep, .photo, .figure-card').forEach(function (el) {
       if (io && !reduce) io.observe(el); else el.classList.add('is-in');
     });
     if (reduce) $$('.pstep').forEach(function (s) { s.classList.add('is-in'); });
@@ -314,21 +314,21 @@
     onScroll();
     // first paint: anything already in view reveals immediately
     window.requestAnimationFrame(function () {
-      $$('.reveal, [data-mask]').forEach(function (el) {
+      $$('.reveal, [data-mask], .photo, .figure-card').forEach(function (el) {
         if (el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add('is-in');
       });
     });
     // safety net — content must never stay hidden because an observer
     // never fired (background tab, unsupported browser, blocked script).
     window.setTimeout(function () {
-      $$('.reveal, [data-mask], .pstep').forEach(function (el) {
+      $$('.reveal, [data-mask], .pstep, .photo, .figure-card').forEach(function (el) {
         var r = el.getBoundingClientRect();
         if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('is-in');
       });
     }, 2500);
     document.addEventListener('visibilitychange', function () {
       if (document.visibilityState !== 'visible') return;
-      $$('.reveal, [data-mask], .pstep').forEach(function (el) {
+      $$('.reveal, [data-mask], .pstep, .photo, .figure-card').forEach(function (el) {
         var r = el.getBoundingClientRect();
         if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('is-in');
       });

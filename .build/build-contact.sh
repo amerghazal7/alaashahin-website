@@ -168,6 +168,15 @@ cat <<'PAGE'
         <h2 class="h-xl mt-2" data-mask data-ar="تفضّل أن <em>نتحدث</em> بدلاً من ذلك؟">Prefer to <em>talk</em> it through?</h2>
       </div>
       <div>
+        <figure class="photo photo--landscape reveal mb-3">
+          <!-- SWAP: assets/img/alaa-call.jpg -->
+          <div class="photo__ph">
+            <svg class="photo__icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.4" y="5" width="19.2" height="15" rx="2.6"/><circle cx="12" cy="12.5" r="3.6"/><path d="M8.2 5 9.6 2.8h4.8L15.8 5"/></svg>
+            <span class="photo__label" data-ar="آلاء أثناء مكالمة — ودّية ومنتبهة، لا رسمية">Alaa on a call &mdash; warm and attentive, not formal</span>
+            <span class="photo__spec">alaa-call.jpg &middot; 3:2</span>
+          </div>
+        </figure>
+
         <p class="lede reveal" data-ar="احجز مكالمة استكشافية لمشاركة التحدي ومعرفة ما إذا كان العمل معاً هو الخيار المناسب. لست بحاجة إلى معرفة الخدمة أو الباقة التي تحتاجها قبل المكالمة.">Book a discovery call to share the challenge and see whether working together is the right fit. You don&rsquo;t need to know which service or package you need before the call.</p>
 
         <!-- Embed the booking calendar here once the call length and timezone are confirmed. -->
