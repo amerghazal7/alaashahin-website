@@ -1,0 +1,7 @@
+# The redesign is live but unfinished — keep its inner pages out of search
+# until the real site replaces this holding page. Delete this file at launch.
+User-agent: *
+Disallow: /experience-ux-consulting/
+Disallow: /workshops/
+Disallow: /speaking/
+Disallow: /contact/
