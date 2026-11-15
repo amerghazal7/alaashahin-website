@@ -124,15 +124,14 @@ body.is-swapping{opacity:0}
 
 /* ── the action, with the drawn arrow leaning into it ──── */
 .act{position:relative;display:inline-flex;align-items:center;margin-top:clamp(1.75rem,3.5vw,2.4rem)}
-/* sweeps off the end of the copy above and curves down into the button.
-   Mirrored in LTR so the tail reads as coming from the text; in RTL the
-   whole block flips, so the original drawing is already the right way. */
+/* Tail starts up at the copy, curves over and the head comes down into
+   the button — so it sits before the button, drawn unmirrored. RTL flips
+   the whole block, so the drawing mirrors with it. */
 .arrow{
-  position:absolute;inset-inline-start:calc(100% + .4rem);bottom:6%;
+  position:absolute;inset-inline-end:calc(100% + .4rem);bottom:6%;
   width:clamp(62px,6.6vw,86px);height:auto;color:var(--wine);pointer-events:none;
-  transform:scaleX(-1);
 }
-[dir="rtl"] .arrow{transform:none}
+[dir="rtl"] .arrow{transform:scaleX(-1)}
 @media (max-width:640px){.arrow{display:none}}
 
 .btn{
@@ -185,8 +184,8 @@ body.is-swapping{opacity:0}
 
     <p class="role" data-ar="متخصصة تصميم تجارب <span class='sep'>·</span> مدرِّبة <span class='sep'>·</span> متحدثة">Experience Design Specialist <span class="sep">·</span> Educator <span class="sep">·</span> Speaker</p>
 
-    <p class="msg" data-ar="الموقع الجديد عم يتجهّز.">A new site is on the way.</p>
-    <p class="sub" data-ar="لحتى يخلص، أسرع طريقة للتواصل هي البريد.">Until it is ready, email is the quickest way to reach me.</p>
+    <p class="msg" data-ar="الموقع الجديد قيد الإنشاء.">A new site is on the way.</p>
+    <p class="sub" data-ar="وإلى حين اكتماله، يبقى البريد الإلكتروني أسرع وسيلة للتواصل.">Until it is ready, email is the quickest way to reach me.</p>
 
     <div class="act">
       <svg class="arrow" viewBox="0 0 120 92" fill="none" aria-hidden="true">
@@ -194,12 +193,12 @@ body.is-swapping{opacity:0}
         <path d="M80 58c6 7 10 13 12 20 4-7 9-13 16-18" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <a class="btn" href="mailto:contact@alaashahin.com">
-        <span data-ar="مراسلة عبر البريد">Send an email</span>
+        <span data-ar="المراسلة عبر البريد">Send an email</span>
       </a>
     </div>
 
     <div class="follow">
-      <p class="follow__k" data-ar="متابعة الأفكار">Follow the thinking</p>
+      <p class="follow__k" data-ar="لمتابعة الأفكار">Follow the thinking</p>
       <div class="social">
         <a href="https://www.linkedin.com/in/thealaashahin/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.4 8.4h4.2V24H.4zM8.3 8.4h4v2.13h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.43V24h-4.19v-7.36c0-1.76-.03-4.02-2.45-4.02-2.45 0-2.83 1.92-2.83 3.9V24H8.3z"/></svg></a>
         <a href="https://www.instagram.com/thealaashahin/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg></a>
