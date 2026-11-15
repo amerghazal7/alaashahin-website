@@ -124,14 +124,14 @@ body.is-swapping{opacity:0}
 
 /* ── the action, with the drawn arrow leaning into it ──── */
 .act{position:relative;display:inline-flex;align-items:center;margin-top:clamp(1.75rem,3.5vw,2.4rem)}
-/* Tail starts up at the copy, curves over and the head comes down into
-   the button — so it sits before the button, drawn unmirrored. RTL flips
-   the whole block, so the drawing mirrors with it. */
+/* Physical right of the button and drawn the same way in both languages:
+   tail up at the copy, sweeping right and curving down. Deliberately not
+   a logical property and not mirrored in RTL — the arrow keeps the same
+   side and the same stroke whichever direction the page reads. */
 .arrow{
-  position:absolute;inset-inline-end:calc(100% + .4rem);bottom:6%;
+  position:absolute;left:calc(100% + .4rem);bottom:6%;
   width:clamp(62px,6.6vw,86px);height:auto;color:var(--wine);pointer-events:none;
 }
-[dir="rtl"] .arrow{transform:scaleX(-1)}
 @media (max-width:640px){.arrow{display:none}}
 
 .btn{
