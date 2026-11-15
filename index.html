@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Alaa Shahin — Ask better questions, design better experiences</title>
+<title>Alaa Shahin — Experience Design Specialist, Educator, Speaker</title>
 <meta name="description" content="Alaa Shahin — experience design, research and teaching. A new site is on the way; email is the quickest way to reach me in the meantime.">
 <link rel="canonical" href="https://alaashahin.com/">
 <meta name="theme-color" content="#F7F3EE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Alaa Shahin">
-<meta property="og:title" content="Alaa Shahin — Ask better questions, design better experiences">
+<meta property="og:title" content="Alaa Shahin — Experience Design Specialist, Educator, Speaker">
 <meta property="og:description" content="A new site is on the way. Email is the quickest way to reach me in the meantime.">
 <meta property="og:url" content="https://alaashahin.com/">
 
@@ -89,18 +89,23 @@ body.is-swapping{opacity:0}
 .mid{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
      text-align:center;max-width:52rem;margin-inline:auto;margin-block:clamp(2.5rem,6vw,4.5rem)}
 
-.eyebrow{font-size:.95rem;font-weight:400;color:var(--ink-2)}  /* ink-3 is 4.18:1 on paper, under AA */
-.eyebrow .sep{color:var(--grey)}
 
 /* the line, set bold in navy with one wine highlight */
 .line{
-  font-family:var(--f-la);font-weight:700;
-  font-size:clamp(2.1rem,1.1rem+4.4vw,4rem);
-  line-height:1.14;letter-spacing:-.02em;color:var(--navy);
-  margin-top:clamp(1.1rem,2.5vw,1.6rem);text-wrap:balance;
+  font-family:var(--f-la);font-weight:500;
+  font-size:clamp(2.4rem,1.2rem+4.8vw,4.25rem);
+  line-height:1.12;letter-spacing:-.02em;color:var(--navy);
+  text-wrap:balance;
 }
-[dir="rtl"] .line{font-family:var(--f-ar);font-weight:700;letter-spacing:0;line-height:1.4}
-.line em{font-style:normal;color:var(--wine)}
+[dir="rtl"] .line{font-family:var(--f-ar);font-weight:500;letter-spacing:0;line-height:1.35}
+
+/* the role line sits under the name, wine marking the separators */
+.role{
+  font-size:clamp(1rem,.95rem+.3vw,1.14rem);font-weight:400;
+  color:var(--ink-2);margin-top:clamp(.85rem,2vw,1.15rem);text-wrap:balance;
+}
+[dir="rtl"] .role{font-weight:400}
+.role .sep{color:var(--wine)}
 
 .sub{font-size:17px;color:var(--ink-2);margin-top:clamp(1.25rem,2.5vw,1.75rem);max-width:42ch;margin-inline:auto}
 
@@ -158,9 +163,9 @@ body.is-swapping{opacity:0}
   </div>
 
   <div class="mid">
-    <p class="eyebrow" data-ar="تجربة المستخدم <span class='sep'>·</span> البحث <span class='sep'>·</span> التعليم">Experience design <span class="sep">·</span> Research <span class="sep">·</span> Teaching</p>
+    <h1 class="line" data-ar="آلاء شاهين">Alaa Shahin</h1>
 
-    <h1 class="line" data-ar="طرح <em>أسئلة أفضل</em><br>وتصميم تجارب أفضل"><em>Ask</em> Better Questions<br>Design Better Experiences</h1>
+    <p class="role" data-ar="أخصائية تصميم تجربة <span class='sep'>·</span> مدرِّبة <span class='sep'>·</span> متحدثة">Experience Design Specialist <span class="sep">·</span> Educator <span class="sep">·</span> Speaker</p>
 
     <p class="sub" data-ar="الموقع الجديد عم يتجهّز. لحتى يخلص، أسرع طريقة للتواصل هي البريد.">A new site is on the way. Until it is ready, email is the quickest way to reach me.</p>
 
@@ -210,8 +215,8 @@ body.is-swapping{opacity:0}
     root.lang=l; root.dir=(l==='ar')?'rtl':'ltr';
     label.textContent=(l==='ar')?'English':'عربي';
     document.title=(l==='ar')
-      ?'آلاء شاهين — طرح أسئلة أفضل وتصميم تجارب أفضل'
-      :'Alaa Shahin — Ask better questions, design better experiences';
+      ?'آلاء شاهين — أخصائية تصميم تجربة ومدرِّبة ومتحدثة'
+      :'Alaa Shahin — Experience Design Specialist, Educator, Speaker';
   }
   function current(){ try{ return localStorage.getItem('as-lang')||'en'; }catch(e){ return 'en'; } }
   btn.addEventListener('click',function(){
