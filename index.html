@@ -3,167 +3,147 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Alaa Shahin — A new site is on the way</title>
-<meta name="description" content="Alaa Shahin — experience design, research and teaching. A new site is on the way. Sessions and enquiries are open in the meantime.">
+<title>Alaa Shahin — Ask better questions, design better experiences</title>
+<meta name="description" content="Alaa Shahin — experience design, research and teaching. A new site is on the way; email is the quickest way to reach me in the meantime.">
 <link rel="canonical" href="https://alaashahin.com/">
-<meta name="theme-color" content="#702F44">
+<meta name="theme-color" content="#F7F3EE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Alaa Shahin">
-<meta property="og:title" content="Alaa Shahin — A new site is on the way">
-<meta property="og:description" content="Experience design, research and teaching. Sessions and enquiries are open in the meantime.">
+<meta property="og:title" content="Alaa Shahin — Ask better questions, design better experiences">
+<meta property="og:description" content="A new site is on the way. Email is the quickest way to reach me in the meantime.">
 <meta property="og:url" content="https://alaashahin.com/">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23702F44%27/><rect x=%2736%27 y=%2736%27 width=%2728%27 height=%2728%27 rx=%276%27 fill=%27%23F7F3EE%27 transform=%27rotate(45 50 50)%27/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23F7F3EE%27/><rect x=%2736%27 y=%2736%27 width=%2728%27 height=%2728%27 rx=%276%27 fill=%27%23702F44%27 transform=%27rotate(45 50 50)%27/></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=IBM+Plex+Sans:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap">
 
 <style>
 /* ═══════════════════════════════════════════════════════════
    Alaa Shahin — holding page
-   Built to the approved brand pack: wine opens, navy closes,
-   paper ground, one gold element, graph-paper texture only.
+   Paper ground, navy as the voice, wine for the one highlight,
+   the arrow and the pill. Graph paper is the only texture.
    ═══════════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  /* wine */
   --wine:#702F44; --wine-hover:#843A53; --wine-pressed:#5A2536; --wine-tint:#F4E9EC;
-  /* navy */
   --navy:#1B3656; --navy-600:#24466F; --navy-900:#0F2136; --navy-tint:#E8ECF2;
-  /* paper */
   --paper:#F7F3EE; --paper-2:#EFE9E1; --white:#FFFFFF;
-  /* ink */
   --ink:#1B3656; --ink-2:#4A5A6E; --ink-3:#6B7684;
-  /* gold — exactly one element per design */
-  --gold:#B8893B; --gold-light:#D4A853; --gold-ink:#8A6420;
-  /* non-text detail only */
   --grey:#8B8B8B;
 
   --f-ar:'El Messiri','IBM Plex Sans',sans-serif;
   --f-la:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
 
-  /* radii derived from the logo */
-  --r-field:14px; --r-card:20px; --r-modal:28px; --r-hero:36px; --r-pill:999px;
-
+  --r-field:14px; --r-card:20px; --r-pill:999px;
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 
 html{-webkit-text-size-adjust:100%}
 body{
   font-family:var(--f-la);
-  font-size:17px; font-weight:300; line-height:1.7;
-  background:var(--wine); color:var(--paper);
-  min-height:100dvh; display:flex; flex-direction:column;
+  font-size:17px;font-weight:300;line-height:1.7;
+  background:var(--paper);color:var(--ink-2);
+  min-height:100dvh;display:flex;flex-direction:column;
   -webkit-font-smoothing:antialiased;
 }
 [dir="rtl"] body{font-family:var(--f-ar);font-weight:400;line-height:1.8}
-body.is-swapping{opacity:0}
 body{transition:opacity .18s var(--ease)}
+body.is-swapping{opacity:0}
 
-/* graph paper — the only texture, on cover areas */
+/* graph paper — the only texture, navy on paper */
 .cover{
-  position:relative; flex:1;
-  display:flex; flex-direction:column;
+  position:relative;flex:1;display:flex;flex-direction:column;
   padding:clamp(1.5rem,4vw,3rem) clamp(1.25rem,5vw,4rem);
   overflow:hidden;
 }
 .cover::before{
-  content:''; position:absolute; inset:0; pointer-events:none;
+  content:'';position:absolute;inset:0;pointer-events:none;
   background-image:
-    linear-gradient(rgba(247,243,238,.08) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(247,243,238,.08) 1px,transparent 1px);
-  background-size:48px 48px;
-  mask-image:radial-gradient(115% 80% at 50% 0%,#000 25%,transparent 80%);
-  -webkit-mask-image:radial-gradient(115% 80% at 50% 0%,#000 25%,transparent 80%);
+    linear-gradient(rgba(27,54,86,.10) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,54,86,.10) 1px,transparent 1px);
+  background-size:46px 46px;
+  mask-image:radial-gradient(120% 95% at 50% 40%,#000 35%,transparent 88%);
+  -webkit-mask-image:radial-gradient(120% 95% at 50% 40%,#000 35%,transparent 88%);
 }
-.cover > *{position:relative;z-index:1}
+.cover>*{position:relative;z-index:1}
 
 /* ── top bar ───────────────────────────────────────────── */
 .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.mark{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--f-la);font-size:.95rem;letter-spacing:.02em;color:rgba(247,243,238,.85)}
-[dir="rtl"] .mark{font-family:var(--f-ar);letter-spacing:0}
-/* nuqta — rounded square turned 45°, the pack's bullet/mark shape */
-.nuqta{width:11px;height:11px;border-radius:3px;background:var(--paper);transform:rotate(45deg);flex-shrink:0}
+.mark{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--f-la);font-size:.95rem;font-weight:500;color:var(--navy)}
+[dir="rtl"] .mark{font-family:var(--f-ar)}
+.nuqta{width:11px;height:11px;border-radius:3px;background:var(--wine);transform:rotate(45deg);flex-shrink:0}
 
 .lang{
   font:inherit;font-size:.9rem;font-weight:400;
-  background:transparent;color:rgba(247,243,238,.85);
-  border:1px solid rgba(247,243,238,.3);border-radius:var(--r-pill);
+  background:transparent;color:var(--navy);
+  border:1px solid rgba(27,54,86,.25);border-radius:var(--r-pill);
   padding:.45rem 1.05rem;cursor:pointer;
   transition:background-color .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease);
 }
-.lang:hover,.lang:focus-visible{background:var(--paper);border-color:var(--paper);color:var(--wine)}
+.lang:hover,.lang:focus-visible{background:var(--navy);border-color:var(--navy);color:var(--paper)}
 
 /* ── centre ────────────────────────────────────────────── */
-.mid{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-     max-width:44rem;margin-inline:auto;margin-block:clamp(2.5rem,7vw,5rem)}
-.mid .head,.mid .sub{margin-inline:auto}
+.mid{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
+     text-align:center;max-width:52rem;margin-inline:auto;margin-block:clamp(2.5rem,6vw,4.5rem)}
 
-.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.95rem;font-weight:400;color:rgba(247,243,238,.72)}
-.eyebrow .sep{color:rgba(247,243,238,.45)}  /* gold is spent on .rule — one gold element per design */
+.eyebrow{font-size:.95rem;font-weight:400;color:var(--ink-2)}  /* ink-3 is 4.18:1 on paper, under AA */
+.eyebrow .sep{color:var(--grey)}
 
-/* the name is the largest text in the first impression, weight 500 */
-.name{
-  font-family:var(--f-la);font-weight:500;
-  font-size:clamp(2.75rem,1.6rem+5.2vw,4.5rem);
-  line-height:1.1;letter-spacing:-.015em;color:var(--paper);
-  margin-top:clamp(1rem,2.5vw,1.5rem);
+/* the line, set bold in navy with one wine highlight */
+.line{
+  font-family:var(--f-la);font-weight:700;
+  font-size:clamp(2.1rem,1.1rem+4.4vw,4rem);
+  line-height:1.14;letter-spacing:-.02em;color:var(--navy);
+  margin-top:clamp(1.1rem,2.5vw,1.6rem);text-wrap:balance;
 }
-[dir="rtl"] .name{font-family:var(--f-ar);letter-spacing:0;line-height:1.3;font-weight:500}
+[dir="rtl"] .line{font-family:var(--f-ar);font-weight:700;letter-spacing:0;line-height:1.4}
+.line em{font-style:normal;color:var(--wine)}
 
-/* the single gold element */
-.rule{width:64px;height:2px;background:var(--gold-light);border:0;margin:clamp(1.5rem,3vw,2rem) auto 0;border-radius:2px}
+.sub{font-size:17px;color:var(--ink-2);margin-top:clamp(1.25rem,2.5vw,1.75rem);max-width:42ch;margin-inline:auto}
 
-.head{
-  font-family:var(--f-la);font-weight:300;
-  font-size:clamp(1.35rem,1.1rem+1.2vw,1.95rem);
-  line-height:1.35;color:var(--paper);margin-top:clamp(1.5rem,3vw,2rem);max-width:22ch;
+/* ── the action, with the drawn arrow leaning into it ──── */
+.act{position:relative;display:inline-flex;align-items:center;margin-top:clamp(2rem,4vw,2.75rem)}
+.arrow{
+  position:absolute;inset-inline-end:calc(100% + .5rem);bottom:58%;
+  width:clamp(74px,9vw,104px);height:auto;color:var(--wine);pointer-events:none;
 }
-[dir="rtl"] .head{font-family:var(--f-ar);font-weight:400;line-height:1.55}
+[dir="rtl"] .arrow{transform:scaleX(-1)}
+@media (max-width:640px){.arrow{display:none}}
 
-.sub{font-size:17px;color:rgba(247,243,238,.78);margin-top:1rem;max-width:40ch}
-
-.acts{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;margin-top:clamp(2rem,4vw,2.75rem)}
 .btn{
   display:inline-flex;align-items:center;gap:.65rem;
-  padding:.85rem 1.6rem;border-radius:var(--r-pill);
-  font:inherit;font-size:1rem;font-weight:400;
-  background:var(--paper);color:var(--wine);border:1px solid var(--paper);
+  padding:.9rem 1.75rem;border-radius:var(--r-pill);
+  font:inherit;font-size:1.02rem;font-weight:500;
+  background:var(--wine);color:var(--paper);border:1px solid var(--wine);
   text-decoration:none;
-  transition:transform .25s var(--ease),background-color .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);
+  transition:transform .25s var(--ease),background-color .25s var(--ease),border-color .25s var(--ease);
 }
-.btn:hover,.btn:focus-visible{transform:translateY(-2px)}
-.btn--ghost{background:transparent;color:var(--paper);border-color:rgba(247,243,238,.35)}
-.btn--ghost:hover,.btn--ghost:focus-visible{border-color:var(--paper);background:rgba(247,243,238,.08);color:var(--paper)}
-.btn svg{flex-shrink:0}
-[dir="rtl"] .btn svg{transform:scaleX(-1)}
+.btn:hover,.btn:focus-visible{background:var(--wine-hover);border-color:var(--wine-hover);transform:translateY(-2px)}
+.btn:active{background:var(--wine-pressed);transform:translateY(0)}
 
-/* ── navy closes ───────────────────────────────────────── */
-.close{
-  background:var(--navy);color:rgba(247,243,238,.72);
-  padding:clamp(1.5rem,3.5vw,2.25rem) clamp(1.25rem,5vw,4rem);
-}
-.close__in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem 1.5rem;max-width:1200px;margin-inline:auto;width:100%}
-.contact{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;font-size:.95rem}
-.contact a{color:var(--paper);text-decoration:none;border-bottom:1px solid rgba(247,243,238,.3);padding-bottom:1px;transition:border-color .25s var(--ease)}
-.contact a:hover{border-color:var(--paper)}
-.dot{color:var(--grey)}
-
-.social{display:flex;gap:.5rem}
+/* ── follow ────────────────────────────────────────────── */
+.follow{display:flex;flex-direction:column;align-items:center;gap:.9rem;margin-top:clamp(2.5rem,5vw,3.5rem)}
+.follow__k{font-size:.92rem;font-weight:400;color:var(--ink-2)}
+.social{display:flex;gap:.55rem}
 .social a{
-  width:38px;height:38px;display:grid;place-items:center;border-radius:50%;
-  background:rgba(247,243,238,.08);color:rgba(247,243,238,.8);
+  width:42px;height:42px;display:grid;place-items:center;border-radius:50%;
+  background:var(--navy-tint);color:var(--navy);
   transition:background-color .25s var(--ease),color .25s var(--ease),transform .25s var(--ease);
 }
-.social a:hover{background:var(--paper);color:var(--navy);transform:translateY(-2px)}
+.social a:hover,.social a:focus-visible{background:var(--wine);color:var(--paper);transform:translateY(-2px)}
 
-:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:var(--r-field)}
+/* ── navy closes ───────────────────────────────────────── */
+.close{background:var(--navy);color:rgba(247,243,238,.7);padding:clamp(1.15rem,2.5vw,1.5rem) clamp(1.25rem,5vw,4rem);font-size:.93rem}
+.close__in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4rem .85rem;max-width:1200px;margin-inline:auto;text-align:center}
+.close a{color:var(--paper);text-decoration:none;border-bottom:1px solid rgba(247,243,238,.35);padding-bottom:1px;transition:border-color .25s var(--ease)}
+.close a:hover{border-color:var(--paper)}
+.dot{color:var(--grey)}
 
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
-}
+:focus-visible{outline:2px solid var(--wine);outline-offset:3px;border-radius:var(--r-field)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}}
 </style>
 </head>
 <body>
@@ -174,48 +154,44 @@ body{transition:opacity .18s var(--ease)}
       <span class="nuqta" aria-hidden="true"></span>
       <span data-ar="آلاء شاهين">Alaa Shahin</span>
     </span>
-    <button class="lang" type="button" id="lang" aria-label="Switch language">
-      <span id="langLabel">عربي</span>
-    </button>
+    <button class="lang" type="button" id="lang" aria-label="Switch language"><span id="langLabel">عربي</span></button>
   </div>
 
   <div class="mid">
     <p class="eyebrow" data-ar="تجربة المستخدم <span class='sep'>·</span> البحث <span class='sep'>·</span> التعليم">Experience design <span class="sep">·</span> Research <span class="sep">·</span> Teaching</p>
 
-    <h1 class="name" data-ar="آلاء شاهين">Alaa Shahin</h1>
+    <h1 class="line" data-ar="طرح <em>أسئلة أفضل</em><br>وتصميم تجارب أفضل"><em>Ask</em> Better Questions<br>Design Better Experiences</h1>
 
-    <hr class="rule" aria-hidden="true">
+    <p class="sub" data-ar="الموقع الجديد عم يتجهّز. لحتى يخلص، أسرع طريقة للتواصل هي البريد.">A new site is on the way. Until it is ready, email is the quickest way to reach me.</p>
 
-    <p class="head" data-ar="الموقع الجديد عم يتجهّز.">A new site is on the way.</p>
-
-    <p class="sub" data-ar="لسّا عم اشتغل عليه. لحتى يخلص، التواصل مفتوح وحجز الجلسات شغّال.">Still being built. Until it is ready, enquiries are open and sessions can be booked as usual.</p>
-
-    <div class="acts">
-      <a class="btn" href="https://calendar.app.google/dumF27oX3baRqBdA6" target="_blank" rel="noopener">
-        <span data-ar="حجز جلسة">Book a session</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
-      </a>
-      <a class="btn btn--ghost" href="mailto:contact@alaashahin.com">
+    <div class="act">
+      <svg class="arrow" viewBox="0 0 120 92" fill="none" aria-hidden="true">
+        <path d="M4 10c26-6 55 1 72 18 9 9 14 21 16 36" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M80 58c6 7 10 13 12 20 4-7 9-13 16-18" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <a class="btn" href="mailto:contact@alaashahin.com">
         <span data-ar="مراسلة عبر البريد">Send an email</span>
       </a>
+    </div>
+
+    <div class="follow">
+      <p class="follow__k" data-ar="متابعة الأفكار">Follow the thinking</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/thealaashahin/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.4 8.4h4.2V24H.4zM8.3 8.4h4v2.13h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.43V24h-4.19v-7.36c0-1.76-.03-4.02-2.45-4.02-2.45 0-2.83 1.92-2.83 3.9V24H8.3z"/></svg></a>
+        <a href="https://www.instagram.com/thealaashahin/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.youtube.com/@TheAlaaShahin" target="_blank" rel="noopener" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5A3 3 0 0 0 .5 6.9C0 8.8 0 12 0 12s0 3.2.5 5.1a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.2 24 12 24 12s0-3.2-.5-5.1zM9.6 15.6V8.4l6.2 3.6z"/></svg></a>
+        <a href="https://www.tiktok.com/@thealaashahin" target="_blank" rel="noopener" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-1.83-2.48V9.77a5.68 5.68 0 1 0 4.92 5.63V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z"/></svg></a>
+      </div>
     </div>
   </div>
 </main>
 
 <footer class="close">
-  <div class="close__in">
-    <p class="contact">
-      <span data-ar="للتواصل">Get in touch</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <a href="mailto:contact@alaashahin.com">contact@alaashahin.com</a>
-    </p>
-    <div class="social">
-      <a href="https://www.linkedin.com/in/thealaashahin/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.4 8.4h4.2V24H.4zM8.3 8.4h4v2.13h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.43V24h-4.19v-7.36c0-1.76-.03-4.02-2.45-4.02-2.45 0-2.83 1.92-2.83 3.9V24H8.3z"/></svg></a>
-      <a href="https://www.instagram.com/thealaashahin/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg></a>
-      <a href="https://www.youtube.com/@TheAlaaShahin" target="_blank" rel="noopener" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5A3 3 0 0 0 .5 6.9C0 8.8 0 12 0 12s0 3.2.5 5.1a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.2 24 12 24 12s0-3.2-.5-5.1zM9.6 15.6V8.4l6.2 3.6z"/></svg></a>
-      <a href="https://www.tiktok.com/@thealaashahin" target="_blank" rel="noopener" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-1.83-2.48V9.77a5.68 5.68 0 1 0 4.92 5.63V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z"/></svg></a>
-    </div>
-  </div>
+  <p class="close__in">
+    <span data-ar="للتواصل">Get in touch</span>
+    <span class="dot" aria-hidden="true">·</span>
+    <a href="mailto:contact@alaashahin.com">contact@alaashahin.com</a>
+  </p>
 </footer>
 
 <script>
@@ -224,27 +200,26 @@ body{transition:opacity .18s var(--ease)}
 (function(){
   var root=document.documentElement, body=document.body;
   var btn=document.getElementById('lang'), label=document.getElementById('langLabel');
-
   function apply(l){
-    var nodes=document.querySelectorAll('[data-ar]');
-    for(var i=0;i<nodes.length;i++){
-      var el=nodes[i];
+    var n=document.querySelectorAll('[data-ar]');
+    for(var i=0;i<n.length;i++){
+      var el=n[i];
       if(el.dataset.en===undefined) el.dataset.en=el.innerHTML;
       el.innerHTML=(l==='ar')?el.dataset.ar:el.dataset.en;
     }
     root.lang=l; root.dir=(l==='ar')?'rtl':'ltr';
     label.textContent=(l==='ar')?'English':'عربي';
-    document.title=(l==='ar')?'آلاء شاهين — الموقع الجديد عم يتجهّز':'Alaa Shahin — A new site is on the way';
+    document.title=(l==='ar')
+      ?'آلاء شاهين — طرح أسئلة أفضل وتصميم تجارب أفضل'
+      :'Alaa Shahin — Ask better questions, design better experiences';
   }
   function current(){ try{ return localStorage.getItem('as-lang')||'en'; }catch(e){ return 'en'; } }
-
   btn.addEventListener('click',function(){
     var next=current()==='ar'?'en':'ar';
     try{ localStorage.setItem('as-lang',next); }catch(e){}
     body.classList.add('is-swapping');
     setTimeout(function(){ apply(next); body.classList.remove('is-swapping'); },160);
   });
-
   apply(current());
 })();
 </script>
